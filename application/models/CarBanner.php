@@ -6,7 +6,7 @@
  * @desc Lecture_Banner Banner模型
  * @author Leslie
  * @link mailto:lesliedream@outlook.com
- * @version LctBanner.php v0.0 2019/08/19 新建
+ * @version LctBanner.php v0.0 2019/8/19 新建
  */
 class CarBannerModel extends BaseModel {
 

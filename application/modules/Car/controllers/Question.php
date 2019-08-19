@@ -6,7 +6,7 @@
  * @desc FAQ控制器
  * @author Leslie
  * @link mailto:lesliedream@outlook.com
- * @version Question.php v0.0 2018/4/9 新建
+ * @version Question.php v0.0 2019/8/19 新建
  *
  */
 class QuestionController extends BaseController {

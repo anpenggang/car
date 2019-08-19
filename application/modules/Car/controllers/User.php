@@ -22,7 +22,7 @@ class UserController extends BaseController {
 		parent::init();
 		
 		//初始化用户模型
-		$this->_model = new LctUserModel();
+		$this->_model = new CarUserModel();
 
 	}
 	

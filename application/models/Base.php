@@ -6,7 +6,7 @@
  * @desc 用户模型
  * @author Leslie
  * @link mailto:lesliedream@outlook.com
- * @version Base.php v0.0 2017/9/30 新建
+ * @version Base.php v0.0 2019/8/19 新建
  */
 
 class BaseModel{
