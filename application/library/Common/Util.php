@@ -301,38 +301,6 @@ class Common_Util{
 
     }
 
-	/**
-	 * 计算剩余时间
-	 */
-	public static function lessTime($time_s,$time_n){
-
-		$strtime = '';
-		$time = $time_n-$time_s;
-		if ($time >= 86400*365) {
-			return $strtime = "永久有效";
-		}
-		if($time >= 86400){
-			return $strtime = floor($time/86400)."天";
-		}
-		if($time >= 3600){
-			$strtime .= str_pad(intval($time/3600),2,'0',STR_PAD_LEFT).':';
-			$time = $time % 3600;
-		}else{
-			$strtime .= '00'.':';
-		}
-		if($time >= 60){
-			$strtime .= str_pad(intval($time/60),2,'0',STR_PAD_LEFT).':';
-			$time = $time % 60;
-		}else{
-			$strtime .= '00'.':';
-		}
-		if($time >= 0){
-			$strtime .= str_pad(intval($time),2,'0',STR_PAD_LEFT);
-		}else{
-			$strtime = "已结束";
-		}
-		return $strtime;
-	}
 
 }     
 /* vim: set expandtab ts=4 sw=4 sts=4 tw=100: */

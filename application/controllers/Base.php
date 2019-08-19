@@ -142,19 +142,4 @@ class BaseController extends Yaf_Controller_Abstract {
 		return json_decode($userinfo,true);
 	}
 
-    /**
-     * 获取用户是否被封禁
-     */
-    public function getDataAccess($controller) {
-
-        $user_model = new PtnUserModel();
-        $user_info = $user_model->getUserInfo($controller->_userinfo['user_id']);
-        if ($user_info['isforbidden'] === 2) {
-            $data_access = false;
-        } else {
-            $data_access = true;
-        }
-        return $data_access;
-    }
-
 }
