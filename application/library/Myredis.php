@@ -13,7 +13,7 @@ final class Myredis {
 		$redis = new \Redis();
 		$redis->connect('127.0.0.1','6379');
 		//$redis->auth('jiangfengloveheibaixiaoyuan');
-		$this->_myredis = $redis;
+		self::$_myredis = $redis;
  	}
 
 	//创建当前类的实例
