@@ -1,0 +1,37 @@
+2017-10-24 10:16:32 pid:550 Workerman[start.php] start in DEBUG mode
+2017-10-24 10:18:43 pid:550 Workerman[start.php] Stopping ...
+2017-10-24 10:18:43 pid:550 Workerman[start.php] has been stopped
+2017-10-24 12:08:14 pid:2719 Workerman[start.php] start in DAEMON mode
+2017-10-24 12:08:31 pid:2735 Workerman[start.php] stop 
+2017-10-24 12:08:31 pid:2735 Workerman[start.php] is stoping ...
+2017-10-24 12:08:31 pid:2721 Workerman[start.php] Stopping ...
+2017-10-24 12:08:31 pid:2721 Workerman[start.php] has been stopped
+2017-10-24 12:08:31 pid:2735 Workerman[start.php] stop success
+2017-10-24 12:08:51 pid:2736 Workerman[start.php] status 
+2017-10-24 12:08:51 pid:2736 Workerman[start.php] not run
+2017-10-24 14:17:10 pid:4938 Workerman[start.php] status 
+2017-10-24 14:17:10 pid:4938 Workerman[start.php] not run
+2017-10-24 14:18:23 pid:4967 Workerman[start.php] start in DAEMON mode
+2017-10-24 14:32:18 pid:5278 Workerman[start.php] stop 
+2017-10-24 14:32:18 pid:5278 Workerman[start.php] is stoping ...
+2017-10-24 14:32:18 pid:4969 Workerman[start.php] Stopping ...
+2017-10-24 14:32:18 pid:4969 Workerman[start.php] has been stopped
+2017-10-24 14:32:18 pid:5278 Workerman[start.php] stop success
+2017-10-24 14:32:25 pid:5279 Workerman[start.php] stop 
+2017-10-24 14:32:25 pid:5279 Workerman[start.php] not run
+2017-10-24 14:32:30 pid:5280 Workerman[start.php] status 
+2017-10-24 14:32:30 pid:5280 Workerman[start.php] not run
+2017-10-24 14:32:31 pid:5281 Workerman[start.php] status 
+2017-10-24 14:32:31 pid:5281 Workerman[start.php] not run
+2017-10-25 09:17:14 pid:25447 Workerman[start.php] start in DEBUG mode
+2017-10-25 09:17:17 pid:25447 Workerman[start.php] Stopping ...
+2017-10-25 09:17:17 pid:25447 Workerman[start.php] has been stopped
+2017-10-25 09:17:35 pid:25460 Workerman[start.php] start in DAEMON mode
+2017-10-25 09:18:00 pid:25479 Workerman[start.php] status 
+2017-10-25 09:28:56 pid:25473 Bad request for Register service. Request info(IP:117.73.241.162, Request Buffer:GET /server.php HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2017-10-25 09:36:12 pid:25473 Bad request for Register service. Request info(IP:117.73.241.162, Request Buffer:GET /server.php HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2017-10-25 12:03:17 pid:28593 Workerman[start.php] stop 
+2017-10-25 12:03:17 pid:28593 Workerman[start.php] is stoping ...
+2017-10-25 12:03:17 pid:25462 Workerman[start.php] Stopping ...
+2017-10-25 12:03:17 pid:25462 Workerman[start.php] has been stopped
+2017-10-25 12:03:17 pid:28593 Workerman[start.php] stop success

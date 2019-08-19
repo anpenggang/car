@@ -1,0 +1,110 @@
+<br />
+<font size='1'><table class='xdebug-error xe-warning' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Warning: Invalid argument supplied for foreach() in /home/vagrant/code/phalcon/bi/app/controllers/WorkorderController.php on line <i>160</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0043</td><td bgcolor='#eeeeec' align='right'>400688</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/home/vagrant/code/phalcon/bi/public/index.php' bgcolor='#eeeeec'>.../index.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.1419</td><td bgcolor='#eeeeec' align='right'>482136</td><td bgcolor='#eeeeec'><a href='http://www.php.net/Phalcon\Mvc\Application.handle' target='_new'>handle</a>
+(  )</td><td title='/home/vagrant/code/phalcon/bi/public/index.php' bgcolor='#eeeeec'>.../index.php<b>:</b>88</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>3</td><td bgcolor='#eeeeec' align='center'>0.1427</td><td bgcolor='#eeeeec' align='right'>508656</td><td bgcolor='#eeeeec'><a href='http://www.php.net/Phalcon\Mvc\Dispatcher.dispatch' target='_new'>dispatch</a>
+(  )</td><td title='/home/vagrant/code/phalcon/bi/public/index.php' bgcolor='#eeeeec'>.../index.php<b>:</b>88</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>4</td><td bgcolor='#eeeeec' align='center'>0.2605</td><td bgcolor='#eeeeec' align='right'>952992</td><td bgcolor='#eeeeec'><a href='http://www.php.net/Phalcon\Mvc\Dispatcher.callActionMethod' target='_new'>callActionMethod</a>
+(  )</td><td title='/home/vagrant/code/phalcon/bi/public/index.php' bgcolor='#eeeeec'>.../index.php<b>:</b>88</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>5</td><td bgcolor='#eeeeec' align='center'>0.2605</td><td bgcolor='#eeeeec' align='right'>953376</td><td bgcolor='#eeeeec'>WorkorderController->create_ajaxAction(  )</td><td title='/home/vagrant/code/phalcon/bi/public/index.php' bgcolor='#eeeeec'>.../index.php<b>:</b>88</td></tr>
+<tr><th align='left' colspan='5' bgcolor='#e9b96e'>Variables in local scope (#5)</th></tr>
+<tr><td colspan='2' align='right' bgcolor='#eeeeec' valign='top'><pre>$add_userid&nbsp;=</pre></td><td colspan='3' bgcolor='#eeeeec'><pre class='xdebug-var-dump' dir='ltr'>
+<small>/home/vagrant/code/phalcon/bi/app/controllers/WorkorderController.php:160:</small><small>string</small> <font color='#cc0000'>'10000'</font> <i>(length=5)</i>
+</pre></td></tr>
+<tr><td colspan='2' align='right' bgcolor='#eeeeec' valign='top'><pre>$bi_db&nbsp;=</pre></td><td colspan='3' bgcolor='#eeeeec'><pre class='xdebug-var-dump' dir='ltr'>
+<small>/home/vagrant/code/phalcon/bi/app/controllers/WorkorderController.php:160:</small>
+<b>object</b>(<i>Phalcon\Db\Adapter\Pdo\Mysql</i>)[<i>136</i>]
+  <i>protected</i> '_eventsManager' <font color='#888a85'>=&gt;</font> 
+    <b>object</b>(<i>Phalcon\Events\Manager</i>)[<i>132</i>]
+      <i>protected</i> '_events' <font color='#888a85'>=&gt;</font> 
+        <b>array</b> <i>(size=1)</i>
+          'db' <font color='#888a85'>=&gt;</font> 
+            <b>array</b> <i>(size=1)</i>
+              ...
+      <i>protected</i> '_collect' <font color='#888a85'>=&gt;</font> <small>boolean</small> <font color='#75507b'>false</font>
+      <i>protected</i> '_enablePriorities' <font color='#888a85'>=&gt;</font> <small>boolean</small> <font color='#75507b'>false</font>
+      <i>protected</i> '_responses' <font color='#888a85'>=&gt;</font> <font color='#3465a4'>null</font>
+  <i>protected</i> '_descriptor' <font color='#888a85'>=&gt;</font> 
+    <b>array</b> <i>(size=5)</i>
+      'host' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'192.168.0.229'</font> <i>(length=13)</i>
+      'username' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'bi'</font> <i>(length=2)</i>
+      'password' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'123456'</font> <i>(length=6)</i>
+      'dbname' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'bi'</font> <i>(length=2)</i>
+      'charset' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'utf8'</font> <i>(length=4)</i>
+  <i>protected</i> '_dialect' <font color='#888a85'>=&gt;</font> 
+    <b>object</b>(<i>Phalcon\Db\Dialect\Mysql</i>)[<i>138</i>]
+      <i>protected</i> '_customFunctions' <font color='#888a85'>=&gt;</font> <font color='#3465a4'>null</font>
+      <i>protected</i> '_escapeChar' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'`'</font> <i>(length=1)</i>
+  <i>protected</i> '_connectionId' <font color='#888a85'>=&gt;</font> <small>int</small> <font color='#4e9a06'>0</font>
+  <i>protected</i> '_sqlStatement' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'INSERT INTO work_order (order_no, store_id, handler_type, order_type, title, content, speed_level, status, created_staff_info_id, created_at) &#10;              value (&#39;021902130038&#39;, &#39;TH01010301&#39;, &#39;2&#39;, &#39;2&#39;, &#39;111&#39;, &#39;111sass&#39;, &#39;2&#39;, &#39;1&#39; ,10000, &#39;2019-02-13 14:57:36&#39;)'</font> <i>(length=261)</i>
+  <i>protected</i> '_sqlVariables' <font color='#888a85'>=&gt;</font> <font color='#3465a4'>null</font>
+  <i>protected</i> '_sqlBindTypes' <font color='#888a85'>=&gt;</font> <font color='#3465a4'>null</font>
+  <i>protected</i> '_transactionLevel' <font color='#888a85'>=&gt;</font> <small>int</small> <font color='#4e9a06'>1</font>
+  <i>protected</i> '_transactionsWithSavepoints' <font color='#888a85'>=&gt;</font> <small>boolean</small> <font color='#75507b'>false</font>
+  <i>protected</i> '_pdo' <font color='#888a85'>=&gt;</font> 
+    <b>object</b>(<i>PDO</i>)[<i>137</i>]
+  <i>protected</i> '_affectedRows' <font color='#888a85'>=&gt;</font> <small>int</small> <font color='#4e9a06'>1</font>
+  <i>protected</i> '_type' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'mysql'</font> <i>(length=5)</i>
+  <i>protected</i> '_dialectType' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'mysql'</font> <i>(length=5)</i>
+</pre></td></tr>
+<tr><td colspan='2' align='right' bgcolor='#eeeeec' valign='top'><pre>$content&nbsp;=</pre></td><td colspan='3' bgcolor='#eeeeec'><pre class='xdebug-var-dump' dir='ltr'>
+<small>/home/vagrant/code/phalcon/bi/app/controllers/WorkorderController.php:160:</small><small>string</small> <font color='#cc0000'>'111sass'</font> <i>(length=7)</i>
+</pre></td></tr>
+<tr><td colspan='2' align='right' bgcolor='#eeeeec' valign='top'><pre>$created_at&nbsp;=</pre></td><td colspan='3' bgcolor='#eeeeec'><pre class='xdebug-var-dump' dir='ltr'>
+<small>/home/vagrant/code/phalcon/bi/app/controllers/WorkorderController.php:160:</small><small>string</small> <font color='#cc0000'>'2019-02-13 14:57:36'</font> <i>(length=19)</i>
+</pre></td></tr>
+<tr><td colspan='2' align='right' bgcolor='#eeeeec' valign='top'><pre>$e&nbsp;=</pre></td><td colspan='3' bgcolor='#eeeeec' valign='top'><i>Undefined</i></td></tr>
+<tr><td colspan='2' align='right' bgcolor='#eeeeec' valign='top'><pre>$handler_type&nbsp;=</pre></td><td colspan='3' bgcolor='#eeeeec'><pre class='xdebug-var-dump' dir='ltr'>
+<small>/home/vagrant/code/phalcon/bi/app/controllers/WorkorderController.php:160:</small><small>string</small> <font color='#cc0000'>'2'</font> <i>(length=1)</i>
+</pre></td></tr>
+<tr><td colspan='2' align='right' bgcolor='#eeeeec' valign='top'><pre>$img&nbsp;=</pre></td><td colspan='3' bgcolor='#eeeeec' valign='top'><i>Undefined</i></td></tr>
+<tr><td colspan='2' align='right' bgcolor='#eeeeec' valign='top'><pre>$img_arr&nbsp;=</pre></td><td colspan='3' bgcolor='#eeeeec'><pre class='xdebug-var-dump' dir='ltr'>
+<small>/home/vagrant/code/phalcon/bi/app/controllers/WorkorderController.php:160:</small>
+<b>array</b> <i>(size=0)</i>
+  <i><font color='#888a85'>empty</font></i>
+</pre></td></tr>
+<tr><td colspan='2' align='right' bgcolor='#eeeeec' valign='top'><pre>$insert_handler_date&nbsp;=</pre></td><td colspan='3' bgcolor='#eeeeec'><pre class='xdebug-var-dump' dir='ltr'>
+<small>/home/vagrant/code/phalcon/bi/app/controllers/WorkorderController.php:160:</small><small>string</small> <font color='#cc0000'>''</font> <i>(length=0)</i>
+</pre></td></tr>
+<tr><td colspan='2' align='right' bgcolor='#eeeeec' valign='top'><pre>$insert_handler_result&nbsp;=</pre></td><td colspan='3' bgcolor='#eeeeec' valign='top'><i>Undefined</i></td></tr>
+<tr><td colspan='2' align='right' bgcolor='#eeeeec' valign='top'><pre>$insert_handler_sql&nbsp;=</pre></td><td colspan='3' bgcolor='#eeeeec' valign='top'><i>Undefined</i></td></tr>
+<tr><td colspan='2' align='right' bgcolor='#eeeeec' valign='top'><pre>$insert_img_data&nbsp;=</pre></td><td colspan='3' bgcolor='#eeeeec' valign='top'><i>Undefined</i></td></tr>
+<tr><td colspan='2' align='right' bgcolor='#eeeeec' valign='top'><pre>$insert_img_result&nbsp;=</pre></td><td colspan='3' bgcolor='#eeeeec' valign='top'><i>Undefined</i></td></tr>
+<tr><td colspan='2' align='right' bgcolor='#eeeeec' valign='top'><pre>$insert_img_sql&nbsp;=</pre></td><td colspan='3' bgcolor='#eeeeec' valign='top'><i>Undefined</i></td></tr>
+<tr><td colspan='2' align='right' bgcolor='#eeeeec' valign='top'><pre>$insert_order_sql&nbsp;=</pre></td><td colspan='3' bgcolor='#eeeeec'><pre class='xdebug-var-dump' dir='ltr'>
+<small>/home/vagrant/code/phalcon/bi/app/controllers/WorkorderController.php:160:</small><small>string</small> <font color='#cc0000'>'INSERT INTO work_order (order_no, store_id, handler_type, order_type, title, content, speed_level, status, created_staff_info_id, created_at) &#10;              value (&#39;021902130038&#39;, &#39;TH01010301&#39;, &#39;2&#39;, &#39;2&#39;, &#39;111&#39;, &#39;111sass&#39;, &#39;2&#39;, &#39;1&#39; ,10000, &#39;2019-02-13 14:57:36&#39;)'</font> <i>(length=261)</i>
+</pre></td></tr>
+<tr><td colspan='2' align='right' bgcolor='#eeeeec' valign='top'><pre>$order_content&nbsp;=</pre></td><td colspan='3' bgcolor='#eeeeec'><pre class='xdebug-var-dump' dir='ltr'>
+<small>/home/vagrant/code/phalcon/bi/app/controllers/WorkorderController.php:160:</small><small>boolean</small> <font color='#75507b'>true</font>
+</pre></td></tr>
+<tr><td colspan='2' align='right' bgcolor='#eeeeec' valign='top'><pre>$order_no&nbsp;=</pre></td><td colspan='3' bgcolor='#eeeeec'><pre class='xdebug-var-dump' dir='ltr'>
+<small>/home/vagrant/code/phalcon/bi/app/controllers/WorkorderController.php:160:</small><small>string</small> <font color='#cc0000'>'021902130038'</font> <i>(length=12)</i>
+</pre></td></tr>
+<tr><td colspan='2' align='right' bgcolor='#eeeeec' valign='top'><pre>$order_type&nbsp;=</pre></td><td colspan='3' bgcolor='#eeeeec'><pre class='xdebug-var-dump' dir='ltr'>
+<small>/home/vagrant/code/phalcon/bi/app/controllers/WorkorderController.php:160:</small><small>string</small> <font color='#cc0000'>'2'</font> <i>(length=1)</i>
+</pre></td></tr>
+<tr><td colspan='2' align='right' bgcolor='#eeeeec' valign='top'><pre>$speed_level&nbsp;=</pre></td><td colspan='3' bgcolor='#eeeeec'><pre class='xdebug-var-dump' dir='ltr'>
+<small>/home/vagrant/code/phalcon/bi/app/controllers/WorkorderController.php:160:</small><small>string</small> <font color='#cc0000'>'2'</font> <i>(length=1)</i>
+</pre></td></tr>
+<tr><td colspan='2' align='right' bgcolor='#eeeeec' valign='top'><pre>$staff_info_id&nbsp;=</pre></td><td colspan='3' bgcolor='#eeeeec' valign='top'><i>Undefined</i></td></tr>
+<tr><td colspan='2' align='right' bgcolor='#eeeeec' valign='top'><pre>$staff_info_ids&nbsp;=</pre></td><td colspan='3' bgcolor='#eeeeec'><pre class='xdebug-var-dump' dir='ltr'>
+<small>/home/vagrant/code/phalcon/bi/app/controllers/WorkorderController.php:160:</small><small>string</small> <font color='#cc0000'>'select id from staff_info where  find_in_set(2,position_category)'</font> <i>(length=65)</i>
+</pre></td></tr>
+<tr><td colspan='2' align='right' bgcolor='#eeeeec' valign='top'><pre>$store_id&nbsp;=</pre></td><td colspan='3' bgcolor='#eeeeec'><pre class='xdebug-var-dump' dir='ltr'>
+<small>/home/vagrant/code/phalcon/bi/app/controllers/WorkorderController.php:160:</small><small>string</small> <font color='#cc0000'>'TH01010301'</font> <i>(length=10)</i>
+</pre></td></tr>
+<tr><td colspan='2' align='right' bgcolor='#eeeeec' valign='top'><pre>$title&nbsp;=</pre></td><td colspan='3' bgcolor='#eeeeec'><pre class='xdebug-var-dump' dir='ltr'>
+<small>/home/vagrant/code/phalcon/bi/app/controllers/WorkorderController.php:160:</small><small>string</small> <font color='#cc0000'>'111'</font> <i>(length=3)</i>
+</pre></td></tr>
+<tr><td colspan='2' align='right' bgcolor='#eeeeec' valign='top'><pre>$user_where&nbsp;=</pre></td><td colspan='3' bgcolor='#eeeeec'><pre class='xdebug-var-dump' dir='ltr'>
+<small>/home/vagrant/code/phalcon/bi/app/controllers/WorkorderController.php:160:</small><small>string</small> <font color='#cc0000'>' find_in_set(2,position_category)'</font> <i>(length=33)</i>
+</pre></td></tr>
+<tr><td colspan='2' align='right' bgcolor='#eeeeec' valign='top'><pre>$work_order_id&nbsp;=</pre></td><td colspan='3' bgcolor='#eeeeec'><pre class='xdebug-var-dump' dir='ltr'>
+<small>/home/vagrant/code/phalcon/bi/app/controllers/WorkorderController.php:160:</small><small>string</small> <font color='#cc0000'>'16'</font> <i>(length=2)</i>
+</pre></td></tr>
+</table></font>
+{"code":0,"msg":"error,please,try again4SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1","data":[]}

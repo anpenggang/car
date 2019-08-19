@@ -1,0 +1,35 @@
+//上传图片相关
+.upimg {
+	width: 150px;
+	height: 150px;
+	border: 1px solid #DDDDDD;
+	display: table-cell;
+	vertical-align: middle;
+}
+.upimg span {
+	display: block;
+	height: 40px;
+	width: 40px;
+	background: url(http://svn.stuhui.com/images/clubadmin/upimgbc.png) no-repeat;
+	margin: 0 auto;
+}
+.img_div {
+	position: relative;
+	width: 150px;
+	display:inline-block;
+}
+.img_div img {
+	width: 150px;
+	height: 150px;
+}
+.delete_image {
+	background: url(http://svn.stuhui.com/images/clubadmin/ddd.png) no-repeat;
+	width: 42px;
+	height: 42px;
+	display: block;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+

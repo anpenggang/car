@@ -1,0 +1,171 @@
+
+ul,ol,li{list-style:none;}
+i{font-style:normal;}
+body{background:#ecf0f5;}
+.none{display:none;}
+.content-wrapper, .right-side, .main-footer{margin-left:0px;}
+
+
+/*nav begin*/
+.wrapper  .nav_user{padding-left:20%;}
+.nav_user .navbar-nav .dropdown-menu{overflow:hidden;padding:20px 0px 20px 33%;}
+.nav_user .navbar-nav .logout_menu{width:auto;}
+.nav_user .navbar-nav .dropdown-menu li{float:left;}
+.nav_user .navbar-nav .dropdown-toggle{color:#fff;}
+.nav_user .navbar-nav .active{color:#000;}
+
+.navbar{padding-left:80px;position:relative;}
+.navbar-collapse{border-top:1px solid #3b393c;border-color:#3b393c!important;width:100%}
+
+#login-popup-form{padding:15px}
+
+.navbar-default{position:relative;margin:0;background:#9f9f9f;border:0}
+.navbar-default .navbar-toggle{color:#dfe1e2;border-color:#808080}
+.navbar-default .navbar-toggle:hover{color:#4d4e53;border-color:#dfe1e2}
+.navbar-nav>li>.dropdown-menu{border-radius:0;}
+.navbar-nav .dropdown-menu{padding:0 0 15px 0;background:#ccc}
+
+.dropdown.open{border:0}
+.dropdown li{float:left;margin-right:6px;}
+
+
+
+/*search begin*/
+.search{padding-top:10px;padding-left:15px;}
+.search a{color:#fff;font-size:20px;vertical-align:-webkit-baseline-middle;}
+
+.nav_search{overflow: hidden;padding:15px 0px;display:none;width:40%;margin:0 auto;}
+.nav_search .icon-close,.nav_search .icon-search2{color:#000;font-size:18px;}
+.nav_search .input-group .input-group-addon{border-radius:4px;}
+.nav_search .input-group .input-group-addon:first-child{border-top-right-radius: 0;
+    border-bottom-right-radius: 0;}
+.nav_search .input-group .input-group-addon:last-child{border-top-left-radius: 0;
+    border-bottom-left-radius: 0;}
+.nav_search i{cursor:pointer;}
+
+
+/*logo begin*/
+.logo{width:300px;position:absolute;left:20px;top:-5px;}
+.logo h4{padding-top:10px;}
+.logo h4 a{color:#fff;font-weight:bold;}
+.logo img{width:45px;height:30px;}
+
+/*log_out*/
+.nav_user .navbar-nav li.log_out .dropdown-menu{padding-left:10px;}
+
+/*lag_change*/
+.lag_change img{vertical-align:sub; }
+
+/*表格文字居中*/
+.user_center table th,.user_center table td{text-align:center;}
+
+
+.sever_inner button{margin-right:20px;}
+.group_checked li label{padding-right:10px;}
+
+
+
+
+/*树形菜单*/
+.node_admin .content .col-md-2{width:12%;}
+.node_admin .padt_20{padding-top:20px;padding-left:85px;}
+div.zTreeDemoBackground{height:auto;overflow:hidden;margin-bottom:30px;}
+
+
+
+
+.sever_inner .tab-content .table-responsive tr th{padding:13px;}
+.sever_inner .tab-content .table-responsive tr td:first-child{width:15%;}
+
+
+
+.charts_bgcol{background:#f9f0f0;}
+
+.add_alarm .bor_right{border-right:1px solid #ccc;}
+.add_alarm .box-footer{margin-top:40px;}
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 768px) {
+    .reset-w .table-forms-td-left{text-align:left;}
+    .reset-w .radio-segmented{margin:0;padding:0;}
+    .reset-w a{margin:0;width:25%;margin-top:15px;}
+    .mf_15 .navbar-form{border:none;}
+    .mf_15 .col-xs-10{padding-top:0px;}
+    .login .content-wrapper{margin-left:0px;padding-top:10px;}
+    .mask{width:88%;left:6%;}
+    .navbar{padding-left:20px;}
+    .nav_search .icon-search2{}
+    .nav_search .search_close{float:right;}
+    .main-header .logo{width:auto;}
+    .logo{left:0px;}
+    .nav_search{width:90%;}
+    .nav_user .navbar-nav .dropdown-menu{padding-left:0px;}
+    /*.navbar-default .navbar-nav .open .dropdown-menu>li{float:none;}*/
+    .navbar-default .navbar-nav .open .dropdown-menu>li>a{width:100%;color:#fff;}
+    .navbar{width:100%;z-index:9999;}
+    .lag_change{padding-left:0px;}
+    .navbar-nav>li.log_out{float:none;padding-left:0px;}
+    .nav_user .navbar-nav li.log_out .dropdown-menu{left:0px;}
+    .wrapper  .nav_user{padding-left:0%;}
+    .logo h4{display:none;}
+    #navbar-right{margin-top:0px;}
+    .user_right .btn-default{margin-left:15px;}
+    .navbar{min-height:40px}
+    .navbar-collapse{border:0;padding-left:0}
+    .container{margin-right:auto;margin-left:auto;padding-left:15px;padding-right:15px;max-width:1170px}
+
+    .log_out.open{position:static;}
+    .navbar-nav .dropdown-menu{padding-left:34px;border:0;margin:0 auto;box-shadow:none;width:100%;z-index:1035;-webkit-transform:scale3d(1,1,1)}
+    .navbar-nav .logout_menu{width:auto;}
+    .navbar-nav .dropdown-toggle{line-height:20px}
+
+    .navbar-nav>li{padding-left:10px;}
+
+    .node_admin .content .col-md-2{width:100%;}
+    .node_admin .padt_20{padding-top:0px;padding-left:16px;}
+    
+    .sever_inner .tab-content .box-body .padb_15>div{padding-bottom:15px;}
+
+    .add_alarm .borcol_start{border-top:1px solid #ccc;}
+    .add_alarm .bor_right{border-right:none;}
+    .alarm_action .col-md-2,.alarm_action .col-md-3{padding-left:8%;}
+    .alarm_action .padl_8{text-align:left;padding-left:8%;}
+
+    .nav-tabs>li>a{padding:10px 9px;}
+
+
+}
+
+@media screen and (min-width:768px){
+    .navbar{min-height:40px}
+    .navbar-collapse{border:0;padding-left:0}
+    .container{margin-right:auto;margin-left:auto;padding-left:15px;padding-right:15px;max-width:1170px}
+    .dropdown.open,.dropdown.active{position:static}
+    .log_out.open{position:static;}
+    .navbar-nav .dropdown-menu{padding-left:34px;border:0;margin:0 auto;box-shadow:none;width:100%;z-index:1035;-webkit-transform:scale3d(1,1,1)}
+    .navbar-nav .logout_menu{width:auto;}
+    .navbar-nav .dropdown-toggle{line-height:20px}
+    
+}
+/*@media screen and (min-width:992px){
+    .hn-button{text-decoration:none;text-align:center;font-size:12px;line-height:18px;}
+    .navbar-default{position:relative;border:0}
+    .dd-nav-subgroup a{font-size:13px;line-height:23px}
+    .dd-nav-subgroup{margin-right:40px;display:inline-block;height:100%;}
+    .hn-button{font-size:16px;min-width:110px;padding:13px 15px 10px 10px;cursor:pointer;}
+    .navbar-default .navbar-nav>.open>a,.navbar-default .navbar-nav>.open>a:hover,.navbar-default .navbar-nav>.open>a:focus{color:#FFF}
+    .dd-nav-subgroup{min-width:135px}
+    .navbar-nav li:first-child .nav-toggle{margin-left:-15px;
+}*/
+@media screen and (max-width:1300px){
+    /*.sever_inner .box label.control-label{width:42%;text-align:left;}*/
+  }
+
+

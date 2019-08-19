@@ -1,0 +1,14 @@
+/*login begin*/
+.login{background:#ecf0f5}
+.login .content-wrapper{padding-top:10%;padding-left:36%;}
+.login .main-footer{margin-left:0px;width:100%;position:fixed;bottom:0px;left:0px;}
+.login .box{padding-right:15px;border:1px solid #00c0ef;max-width:431px;}
+.login .box .col-sm-9{padding-bottom:5px;}
+.login .error_prompt{display:block;text-align:center;color:#f00;}
+.login .btn-info{width:50%;margin-bottom:10px;}
+
+
+@media screen and (max-width: 768px) {
+	.login .content-wrapper{padding-left:0px;}
+
+}

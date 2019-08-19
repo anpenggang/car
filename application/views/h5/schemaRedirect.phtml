@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)# -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<script src="/public/js/jquery.min.js"></script>
+</head>
+<script>
+var param = {};
+param.url = "<?php echo empty($info)?'':$info['url']?>";
+param.protocol = "<?php echo empty($info)?'':$info['protocol']?>";
+var DoSchema = function(param){
+	var loadTime = new Date();
+	location.href = param.protocol;
+	setTimeout(function(){
+		var outTime = new Date()
+			if(outTime - loadTime > 800){
+				location.href = param.url;
+			}           
+	},1000)
+}
+DoSchema(param);
+
+</script>
+</html>

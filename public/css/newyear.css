@@ -1,0 +1,44 @@
+.msg-container {
+    height: 100vh;
+    overflow: hidden;
+    background-color: #f5f5f5;
+}
+.msg-container {
+    -webkit-box-orient: vertical;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+}
+.msg-container, .pro-item, .msg-time-item {
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+.msg-container, .pro-item, .send-wrap {
+    display: -webkit-flex;
+    display: -webkit-box;
+    display: flex;
+}
+.msg-cont {
+    overflow: hidden;
+	padding:10px;
+}
+.msg-header, .msg-cont, .msg-footer {
+    position: relative;
+    width: 100%;
+}
+.msg-cont, .pro-info, .msg-info, .btn-txt {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+}
+.msg-footer {
+    box-sizing: border-box;
+    padding: 0 0 0 10px;
+    background-color: #fff;
+}
+.msgshow-wrap {
+    left: 0;
+    top: 0;
+    right: 0;
+    min-height: 100%;
+}
