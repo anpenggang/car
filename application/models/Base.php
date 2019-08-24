@@ -12,7 +12,8 @@
 class BaseModel{
 
 
-	protected $db = null; //数据库实例
+	protected $_db = null; //数据库实例
+    protected $config = null;//全局的配置文件
 
 	/**
 	 * 构造方法 
@@ -20,9 +21,9 @@ class BaseModel{
 	 **/
 	public function __construct($specify_mode="") {
 
-		$config = new Yaf_Config_Ini( APPLICATION_PATH . "/conf/application.ini", 'product');
-		if(empty($this->db)){
-			$this->db = new MysqliDb($config->db->host, $config->db->user, $config->db->pass, $config->db->dbname);
+		$this->config = new Yaf_Config_Ini( APPLICATION_PATH . "/conf/application.ini", 'product');
+		if($this->_db === null){
+			$this->_db = new MysqliDb($this->config->db->host, $this->config->db->user, $this->config->db->pass, $this->config->db->dbname);
 		}
 
 	}

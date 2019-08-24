@@ -6,10 +6,10 @@
  * @desc 用户控制器
  * @author Leslie
  * @link mailto:lesliedream@outlook.com
- * @version v0.0 2018/4/9 新建
+ * @version v0.0 2019/8/21 新建
  */
 
-class UserController extends BaseController {
+class UserController extends CarBaseController {
 
 	private $_model = null;
 
@@ -40,11 +40,10 @@ class UserController extends BaseController {
 			//$iv = Common_Util::getHttpReqQuery($this,'iv','Str','n',''); //iv
 			//根据code获取用户的openid，作为用户在系统里面的唯一标识
 			$url = "https://api.weixin.qq.com/sns/jscode2session";
-			$config = new Yaf_Config_Ini( APPLICATION_PATH . "/conf/application.ini", 'product');
 			$post_data = [
 				'grant_type' => 'authorization_code',
-				'appid' => $config->lecture->appid,
-				'secret' => $config->lecture->appsecret,
+				'appid' => $this->config->car->appid,
+				'secret' => $this->config->car->appsecret,
 				'js_code' => $code
 			];
 			$wxret = json_decode(Common_Util::RequestHttpArray('post',$url,$post_data),true);

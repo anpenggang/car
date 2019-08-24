@@ -21,7 +21,13 @@ class IndexController extends BaseController {
     }
 
     public function indexAction() {
-        echo "hello world";
+
+    }
+    public function testAction() {
+
+    }
+    public function fileAction() {
+        return $this->fileAction();
     }
 
 

@@ -261,7 +261,7 @@ class Common_Util{
             return true; 
         }
 
-        if(substr(md5($expire_str . 'dongdongqiang' . $userid), 0, 20) == $sub_str)
+        if(substr(md5($expire_str . 'anpenggang' . $userid), 0, 20) == $sub_str)
         {
             if((intval($expire_str) - time()) > 0)  //还在有效期内
                 return true;

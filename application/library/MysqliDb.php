@@ -18,50 +18,59 @@ class MysqliDb
 	 * @var MysqliDb
 	 */
 	protected static $_instance;
+
 	/**
 	 * MySQLi instance
 	 *
 	 * @var mysqli
 	 */
 	protected $_mysqli;
+
 	/**
 	 * The SQL query to be prepared and executed
 	 *
 	 * @var string
 	 */
 	protected $_query;
+
 	/**
 	 * An array that holds where joins
 	 *
 	 * @var array
 	 */
-	protected $_join = array(); 
+	protected $_join = array();
+
 	/**
 	 * An array that holds where conditions 'fieldname' => 'value'
 	 *
 	 * @var array
 	 */
 	protected $_where = array();
+
 	/**
 	 * Dynamic type list for where condition values
 	 *
 	 * @var array
 	 */
 	protected $_whereTypeList;
+
 	/**
 	 * Dynamic type list for order by condition value
 	 */
-	protected $_orderBy = array(); 
+	protected $_orderBy = array();
+
 	/**
 	 * Dynamic type list for group by condition value
 	 */
-	protected $_groupBy = array(); 
+	protected $_groupBy = array();
+
 	/**
 	 * Dynamic type list for table data values
 	 *
 	 * @var array
 	 */
 	protected $_paramTypeList;
+
 	/**
 	 * Dynamic array that holds a combination of where condition/table data value types and parameter referances
 	 *
@@ -106,7 +115,6 @@ class MysqliDb
 	/**
 	 * Reset states after an execution
 	 *
-	 * @return object Returns the current instance.
 	 */
 	protected function reset()
 	{
@@ -120,9 +128,9 @@ class MysqliDb
 		$this->_paramTypeList = null;
 	}
 
-	/*
-	 *      * 对事务的封装：autocommit rollback commit
-	 * */
+	/**
+	 * 对事务的封装：autocommit rollback commit
+     */
 	public function autocommit($enable){
 		if($enable){
 			return $this->_mysqli->autocommit(true);
@@ -131,17 +139,17 @@ class MysqliDb
 		}
 	}
 
-	/*
-	 *      * 对事务的封装：autocommit rollback commit
-	 * */
+	/**
+     * 对事务的封装：autocommit rollback commit
+	 */
 
 	public function rollback(){
 		return $this->_mysqli->rollback();
 	}
 
-	/*
-	 *      * 对事务的封装：autocommit rollback commit
-	 * */
+	/**
+	 * 对事务的封装：autocommit rollback commit
+	 */
 
 	public function commit(){
 		return $this->_mysqli->commit();

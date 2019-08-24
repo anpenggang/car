@@ -6,9 +6,9 @@
  * @desc 首页控制器
  * @author leslie
  * @link mailto:lesliedream@outlook.com
- * @version Index.php v0.0 2018/2/22 新建
+ * @version Index.php v0.0 2019/8/21 新建
  */
-class IndexController extends BaseController {
+class IndexController extends CarBaseController {
 
 	/**
 	 * 初始化方法

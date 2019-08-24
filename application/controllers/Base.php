@@ -20,9 +20,6 @@ class BaseController extends Yaf_Controller_Abstract {
 
 		//实例化redis实例
 		$this->_redis = Myredis::create();
-		
-		//本项目作为接口返回数据，关闭自动渲染视图
-		Yaf_Dispatcher::getInstance()->disableView();
 
 		//输出头消息，防止中文乱码
 		header("Content-Type:text/html;charset=utf8");		
@@ -141,5 +138,40 @@ class BaseController extends Yaf_Controller_Abstract {
         }
 		return json_decode($userinfo,true);
 	}
+
+	public function ajaxReturn($status,$msg,$data = null,$data_access = null) {
+
+        return Common_Util::returnJson($status,$msg,$data,$data_access);
+
+    }
+    public function fileUpload()
+    {
+        ini_set('memory_limit', '3072M'); // 临时设置最大内存占用为3G
+        set_time_limit(0); // 设置脚本最大执行时间 为0 永不过期
+
+        if (!isset($_FILES['file'])) {
+            return $this->ajaxReturn(-1,'暂无文件',[]);
+        } else {
+            $file = $_FILES['file'];
+        }
+        $filePath =  "/home/www/car/public/images/";
+        $str = "";
+
+        //注意设置时区
+        $time = date("YmdHis");//当前上传的时间
+        //获取上传文件的名称
+        $filename = substr($file['name'], 0, strrpos($file['name'], '.'));
+        //获取上传文件的扩展名
+        $extend = strrchr($file['name'], '.');
+        //上传后的文件名
+        $name = $filename . $time . mt_rand(10000, 99999) . $extend;
+        $uploadfile = $filePath . $name;//上传后的文件名地址
+        $filetempname = $file['tmp_name'];
+        $result = move_uploaded_file($filetempname, $uploadfile);//假如上传到当前目录下
+        if ($result) {
+            return $this->ajaxReturn(0,'ok',['url' => $filetempname]);
+        }
+
+    }
 
 }
