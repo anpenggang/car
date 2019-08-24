@@ -34,12 +34,8 @@ class CarModel extends BaseModel {
                   ,cm.floor_price
                   ,cm.floor_oil
                   ,cm.ceiling_oil
-                  ,group_concat(img_src) as img_src
-                   from car_model
-                   left join car_image ci
+                   from car_model cm
                    where cm.deleted = 0
-                    and ci.type = 1
-                    and ci.deleted = 0
                   ";
         return $this->_db->rawQuery($sql);
     }

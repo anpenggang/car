@@ -8,7 +8,7 @@
  * @link mailto:lesliedream@outlook.com
  * @version Banner.php v0.0 2019/08/19 新建
  */
-class BannerController extends CarBaseController {
+class BannerController extends BaseController {
 
 	private $_model = null;
 	private $_userinfo = null;

@@ -23,7 +23,7 @@ class BaseModel{
 
 		$this->config = new Yaf_Config_Ini( APPLICATION_PATH . "/conf/application.ini", 'product');
 		if($this->_db === null){
-			$this->_db = new MysqliDb($this->config->db->host, $this->config->db->user, $this->config->db->pass, $this->config->db->dbname);
+			$this->_db = new MysqliDb($this->config->db->host, $this->config->db->user, $this->config->db->pass, $this->config->db->dbname,$this->config->db->port);
 		}
 
 	}

@@ -1,0 +1,7 @@
+*.log
+*.phtml.php
+/.idea/
+/vendor/
+.env
+/cache/
+application.ini

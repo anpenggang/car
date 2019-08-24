@@ -8,7 +8,7 @@
  * @link mailto:lesliedream@outlook.com
  * @version Index.php v0.0 2019/8/21 新建
  */
-class IndexController extends CarBaseController {
+class IndexController extends BaseController {
 
 	/**
 	 * 初始化方法

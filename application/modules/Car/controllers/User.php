@@ -9,7 +9,7 @@
  * @version v0.0 2019/8/21 新建
  */
 
-class UserController extends CarBaseController {
+class UserController extends BaseController {
 
 	private $_model = null;
 

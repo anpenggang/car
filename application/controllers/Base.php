@@ -22,7 +22,10 @@ class BaseController extends Yaf_Controller_Abstract {
 		$this->_redis = Myredis::create();
 
 		//输出头消息，防止中文乱码
-		header("Content-Type:text/html;charset=utf8");		
+		header("Content-Type:text/html;charset=utf8");
+
+        //本项目作为接口返回数据，关闭自动渲染视图
+        Yaf_Dispatcher::getInstance()->disableView();
 
 	}
 
