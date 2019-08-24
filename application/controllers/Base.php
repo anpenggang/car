@@ -154,7 +154,7 @@ class BaseController extends Yaf_Controller_Abstract {
         } else {
             $file = $_FILES['file'];
         }
-        $filePath =  "/home/www/car/public/images/";
+        $filePath =  "/home/www/car/public/images/car/";
         $str = "";
 
         //注意设置时区
@@ -169,7 +169,7 @@ class BaseController extends Yaf_Controller_Abstract {
         $filetempname = $file['tmp_name'];
         $result = move_uploaded_file($filetempname, $uploadfile);//假如上传到当前目录下
         if ($result) {
-            return $this->ajaxReturn(0,'ok',['url' => $filetempname]);
+            return $this->ajaxReturn(0,'ok',['url' => $uploadfile]);
         }
 
     }
