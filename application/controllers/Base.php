@@ -170,7 +170,7 @@ class BaseController extends Yaf_Controller_Abstract {
         $result = move_uploaded_file($filetempname, $uploadfile);//假如上传到当前目录下
         if ($result) {
             $url = "https://guangguailuli.com/public/images/car/".$name;
-            return $this->ajaxReturn(0,'ok',['url' => $uploadfile]);
+            return $this->ajaxReturn(0,'ok',['url' => $url]);
         } else {
             return $this->ajaxReturn(-1,'error',[]);
         }
