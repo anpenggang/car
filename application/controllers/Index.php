@@ -21,7 +21,7 @@ class IndexController extends BaseController {
     }
 
     public function indexAction() {
-
+        echo "hello world";exit;
     }
     public function testAction() {
 
