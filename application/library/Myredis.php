@@ -10,8 +10,9 @@ final class Myredis {
 
 	//私有化构造方法，不允许外部实例化	
 	private function __construct() {
+        $config = new Yaf_Config_Ini( APPLICATION_PATH . "/conf/application.ini", 'product');
 		$redis = new \Redis();
-		$redis->connect('127.0.0.1','6379');
+		$redis->connect($config->redis->host,$config->redis->port);
 		//$redis->auth('jiangfengloveheibaixiaoyuan');
 		self::$_myredis = $redis;
  	}
@@ -29,18 +30,18 @@ final class Myredis {
 	}
 
 	public function get($key) {
-		return $this->_myredis->get($key);
+		return self::$_myredis->get($key);
 	}
 	
 	public function set($key, $value) {
-		return $this->_myredis->set($key,$value);
+		return self::$_myredis->set($key,$value);
 	}
 
 	public function setex($key, $expire, $value) {
-		return $this->_myredis->setex($key,$expire,$value);
+		return self::$_myredis->setex($key,$expire,$value);
 	}
 	public function del($key){
-		return $this->_myredis->del($key);
+		return self::$_myredis->del($key);
 	}
 
 }
