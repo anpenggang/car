@@ -27,7 +27,8 @@ class IndexController extends BaseController {
 
     }
     public function fileAction() {
-        return $this->fileUpload();
+        $this->fileUpload();
+        exit;
     }
 
 
