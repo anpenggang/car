@@ -25,7 +25,7 @@ class BannerController extends BaseController {
 		$this->_model = new CarBannerModel();
 
 		//根据sessionID获取用户id
-		$this->_userinfo = $this->verifySessionid($this);
+		//$this->_userinfo = $this->verifySessionid($this);
 	
 	}
 
@@ -36,18 +36,11 @@ class BannerController extends BaseController {
 
 		$ret = $this->_model->getBannerList($this->_userinfo['user_id']);
 		if (empty($ret)) {
-			return Common_Util::returnJson(0, '暂无数据', []);
+			return Common_Util::returnJson(-1, '暂无数据', []);
 		}
 		foreach ($ret as $key => $value) {
-			if ($value['pay_method'] === null) {//未购买
-				$ret[$key]['pay_status'] = '未支付';
-				unset($ret[$key]['isshare']);
-			} else {
-				$ret[$key]['pay_status'] = '已支付';
-			}
-			unset($ret[$key]['pay_method']);
 		}
-		return Common_Util::returnJson('20001','查询成功',$ret);
+		return Common_Util::returnJson(0,'ok',$ret);
 
 	}
 

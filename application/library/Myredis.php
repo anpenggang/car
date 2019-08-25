@@ -30,18 +30,18 @@ final class Myredis {
 	}
 
 	public function get($key) {
-		return self::$_myredis->get($key);
+		return $this->_myredis->get($key);
 	}
 	
 	public function set($key, $value) {
-		return self::$_myredis->set($key,$value);
+		return $this->_myredis->set($key,$value);
 	}
 
 	public function setex($key, $expire, $value) {
-		return self::$_myredis->setex($key,$expire,$value);
+		return $this->_myredis->setex($key,$expire,$value);
 	}
 	public function del($key){
-		return self::$_myredis->del($key);
+		return $this->_myredis->del($key);
 	}
 
 }

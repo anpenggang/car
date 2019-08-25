@@ -22,6 +22,16 @@ class EventModel extends BaseModel {
     }
 
     public function eventList() {
+	$sql = "select ce.id as event_id
+		,ce.title
+		,ce.start_time
+		,ce.end_time
+		,ce.content
+		,ce.status
+		from car_event ce
+		where ce.deleted = 0
+		";
+	return $this->_db->rawQuery($sql);
 
     }
 

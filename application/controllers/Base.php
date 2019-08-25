@@ -24,8 +24,15 @@ class BaseController extends Yaf_Controller_Abstract {
 		//输出头消息，防止中文乱码
 		header("Content-Type:text/html;charset=utf8");
 
-        //本项目作为接口返回数据，关闭自动渲染视图
-        Yaf_Dispatcher::getInstance()->disableView();
+        	//本项目作为接口返回数据，关闭自动渲染视图
+        	Yaf_Dispatcher::getInstance()->disableView();
+
+	 	$config = new Yaf_Config_Ini( APPLICATION_PATH . "/conf/application.ini", 'product');
+                $redis = new \Redis();
+                $redis->connect($config->redis->host,$config->redis->port);
+                //$redis->auth('jiangfengloveheibaixiaoyuan');
+                $this->_redis = $redis;
+
 
 	}
 

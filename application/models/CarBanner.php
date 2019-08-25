@@ -44,7 +44,7 @@ class CarBannerModel extends BaseModel {
      * @param $type
      * @return array
      */
-    public function getImageList($type) {
+    public function getImageList($type, $origin_id = 0) {
 
         $sql = "
 		        select 
@@ -52,6 +52,7 @@ class CarBannerModel extends BaseModel {
 		        ,ci.remark
 		        from car_image ci
 		        where ci.deleted = 0 -- 未删除
+			and origin_id = {$origin_id}
 		        and ci.type = {$type}
 		        order by ci.weight desc
 		    ";
