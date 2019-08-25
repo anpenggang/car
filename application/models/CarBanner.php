@@ -39,4 +39,23 @@ class CarBannerModel extends BaseModel {
 		return $this->_db->rawQuery($sql);
 	}
 
+    /**
+     * 获取不同类型对应的图片
+     * @param $type
+     * @return array
+     */
+    public function getImageList($type) {
+
+        $sql = "
+		        select 
+		        ci.img_src
+		        ,ci.remark
+		        from car_image ci
+		        where ci.deleted = 0 -- 未删除
+		        and ci.type = {$type}
+		        order by ci.weight desc
+		    ";
+        return $this->_db->rawQuery($sql);
+    }
+
 }

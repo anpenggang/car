@@ -24,11 +24,20 @@ class CarModel extends BaseModel {
 
 	}
 
-	public function carList() {
-
-	    $sql = "select 
+    /**
+     * 获取车型
+     *
+     * @param $line_id
+     * @return array
+     */
+	public function carModel($line_id) {
+        $sql = "select 
                   cm.id
                   ,cm.name
+                  ,cm.short_name
+                  ,features
+                  ,slogan
+                  ,price
                   ,cm.line_id
                   ,cm.ceiling_price
                   ,cm.floor_price
@@ -36,6 +45,34 @@ class CarModel extends BaseModel {
                   ,cm.ceiling_oil
                    from car_model cm
                    where cm.deleted = 0
+                   and cm.line_id = {$line_id}
+                  ";
+        return $this->_db->rawQuery($sql);
+    }
+
+    /**
+     * 获取车系
+     *
+     * @param $brand_id
+     * @return array
+     */
+	public function carList($brand_id = 1) {
+
+	    $sql = "select 
+                  cl.id
+                  ,cl.name
+                  ,cl.short_name
+                  ,cl.ceiling_price
+                  ,cl.floor_price
+                  ,cl.floor_oil
+                  ,cl.ceiling_oil
+                  ,cl.features
+                  ,cl.slogan
+                  ,cl.car_type
+                  ,cl.is_made_china
+                   from car_line cl
+                   where cl.deleted = 0
+                   and brand_id = {$brand_id}
                   ";
         return $this->_db->rawQuery($sql);
     }
