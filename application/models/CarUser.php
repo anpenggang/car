@@ -7,7 +7,7 @@
  * @link mailto:lesliedream@outlook.com
  * @version CarUser.php v0.0 2019/8/19 新建
  */
-class LctUserModel extends BaseModel {
+class CarUserModel extends BaseModel {
 
     private $_table = 'user_info';
 
@@ -77,6 +77,15 @@ class LctUserModel extends BaseModel {
         return $ret;
 
     }
+
+  //添加用户手机号
+   public function addUserPhone($user_id,$phone) {
+
+	$this->_db->where('id', $user_id);
+        $ret = $this->_db->update($this->_table,['phone' => $phone,'updated_at' => date('Y-m-d H:i:s')]);
+	return $ret;
+	
+   }
 
 
 }

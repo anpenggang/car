@@ -12,6 +12,7 @@
 class BaseController extends Yaf_Controller_Abstract {
 
 	protected $_redis = null;
+	protected $_config = null;
 	
 	/**
 	 * 初始化方法 基类控制器被调用的时候先执行初始化方法，可作用于全局
@@ -27,9 +28,9 @@ class BaseController extends Yaf_Controller_Abstract {
         	//本项目作为接口返回数据，关闭自动渲染视图
         	Yaf_Dispatcher::getInstance()->disableView();
 
-	 	$config = new Yaf_Config_Ini( APPLICATION_PATH . "/conf/application.ini", 'product');
+	 	$this->config = new Yaf_Config_Ini( APPLICATION_PATH . "/conf/application.ini", 'product');
                 $redis = new \Redis();
-                $redis->connect($config->redis->host,$config->redis->port);
+                $redis->connect($this->config->redis->host,$this->config->redis->port);
                 //$redis->auth('jiangfengloveheibaixiaoyuan');
                 $this->_redis = $redis;
 

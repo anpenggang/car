@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>小程序管理后台</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- 公共css -->
+    <link rel="stylesheet" href="/public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/public/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="/public/css/base.css">
+
+</head>
+<body class="hold-transition skin-blue layout-top-nav">
+<!-- wrapper begin-->
+<div class="wrapper">
+    <header class="main-header">
+        <!-- 导航 begin-->
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    
+                    <!-- logo begin-->
+                    <div class="logo">
+                        <a href="#" class="navbar-brand"><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1566739969040&di=02dbe368a141a459a4a0e0e5603f5807&imgtype=0&src=http%3A%2F%2Fpic.rmb.bdstatic.com%2Fb2be517ebfa26e0e519acf9296222a90.jpeg"></a>
+                        <h4><a href="#">小程序管理后台</a></h4>
+                    </div>
+                    <!-- logo end-->
+                </div>
+
+                <div class="collapse navbar-collapse nav_user" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav " id="nav_left">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">计算器配置<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/">计算器配置</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">用户管理<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/CountdownParty/subscribe/subscribeUserInfo">用户查看</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">汽车管理<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/CountdownParty/subscribe/subscribeUserInfo">汽车详情</a></li>
+                                <li><a href="/CountdownParty/subscribe/subscribeUserInfo">新增车型</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">抽奖管理<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/CountdownParty/subscribe/subscribeUserInfo">抽奖管理</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">活动管理<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/CountdownParty/subscribe/subscribeUserInfo">活动列表</a></li>
+                                <li><a href="/CountdownParty/subscribe/subscribeUserInfo">新增活动</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <div class="search">
+                                <a href="#" class="glyphicon glyphicon-search"></a>
+                            </div>
+                        </li>
+                    </ul>
+					<!-- 搜索 begin-->
+                   <div class="nav_search">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                            <input class="form-control" type="text" placeholder="搜索">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-remove"></i></span>
+                        </div>
+                    </div>
+                    <!-- 搜索 end-->
+                    <!--  退出登录 begin--> 
+                    <ul class="nav navbar-nav navbar-right" id="navbar-right">
+                        <li class="dropdown log_out">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">退出系统 <span class="caret"></span></a>
+                            <ul class="dropdown-menu logout_menu">
+                                <li><a href="#"><i class="glyphicon glyphicon-lock"></i>修改密码</a></li>
+                                <li><a href="/index/logout"><i class="glyphicon glyphicon-off"></i>退出</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- 退出登录 end-->
+                </div>
+            </div>
+        </nav>
+        <!-- 导航 end-->
+    </header>
+    <!-- content-wrapper begin -->
+    <div class="content-wrapper">
+        <!-- content-header begin-->
+        <section class="content-header">
+            <div class="row">
+                <div class="col-xs-12 col-md-8">
+                  <h3>用户列表</h3>
+                </div>
+            </div>
+        </section>
+        <!-- content-header begin-->
+        
+        <!-- content begin-->
+        <section class="content user_center">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box box-primary">
+                        <div class="box-body no-padding">
+                            <div class="table-responsive mailbox-messages">
+                                <table class="table table-hover table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>头像</th>
+                                            <th>微信昵称</th>
+                                            <th>注册时间</th>
+                                            <th>性别</th>
+                                            <th>地区</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="danmulist">
+                                    </tbody>
+									<tfoot>
+										<tr><td colspan='6' id='emptymsg'></td></tr>
+									</tfoot>
+                                </table>
+                                <!-- /.table -->
+                            </div>
+                            <!-- /.mail-box-messages -->
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /. box -->
+                </div>
+            </div>
+        </section>
+        <!-- content end-->
+    </div>
+    <!-- content-wrapper end -->
+    <!-- main-footer begin-->
+    <footer class="main-footer">
+        <div class="pull-right hidden-xs"><b>Version</b> 1.0.0</div>
+        <strong>Copyright © 2019 <a href="#"><!-- 版权所有--></a> . All rights reserved.</strong>
+    </footer>
+    <!-- main-footer end-->
+</div>
+<!-- wrapper end-->
+
+<script src="/public/js/jquery.min.js"></script>
+<script src="/public/js/bootstrap.min.js"></script>
+<script src="/public/js/app.min.js"></script>
+<script src="/public/js/html5shiv.min.js"></script>
+<script src="/public/js/respond.min.js"></script>
+<script src="/public/js/base.js"></script>
+<script>
+    'use strict';
+    $(function(){
+        
+        //代理器
+        const dom = new Proxy({}, {
+            get(target, property) {
+                return function(attrs = {}, ...children) {
+                const el = document.createElement(property);
+                for (let prop of Object.keys(attrs)) {
+                    el.setAttribute(prop, attrs[prop]);
+                }
+                for (let child of children) {
+                    if (typeof child === 'string') {
+                    child = document.createTextNode(child);
+                    }
+                    el.appendChild(child);
+                }
+                return el;
+                }
+            }
+        });
+        //进入页面，填充十条数据
+        //getDanmuList();
+        //审核
+        $('#danmulist').on('click','.danmu-success,.danmu-delete',function() {
+            let danmu,danmu_id,url,type,danmu_status;
+            danmu = $(this).parents("tr");//单条弹幕所在数组
+            danmu_id = danmu.children(".id").html();//弹幕id
+            type = $(this).prop("className");//操作类型（删除or通过）
+            if (type.split(' ')[3] == 'danmu-success') {
+                danmu_status = 6;
+            } else {
+                danmu_status = 9;
+            }
+			//alert(danmu_id);
+            url = "/countdownparty/danmaku/reviewdanmaku?danmu_id="+danmu_id+"&status="+danmu_status;
+			$.ajax(url, {
+				//dataType: 'json',
+				contentType:"application/x-www-form-urlencoded;charset=UTF-8",
+				type:'PUT',
+				data : {'danmu_id':''+danmu_id,'status':''+danmu_status}
+			}).done(function (data) {
+				//console.log(data);
+				let res = JSON.parse(data);
+				if(res.status == 20006) {
+    				//console.log('弹幕审核成功');
+                	danmu.remove();
+                	getDanmuList();	
+				} else {
+					alert('弹幕审核有误，请刷新页面重试');
+				}
+			}).fail(function (xhr, status) {
+    			alert('弹幕审核失败,请重试');
+			}).always(function () {
+    			//console.log('请求完成: 无论成功或失败都会调用');
+			});
+
+        });
+
+		//禁用用户
+        $('#danmulist').on('click','.danmu-forbidden',function() {
+            let danmu,user_id,url;
+            danmu = $(this).parents("tr");//单条弹幕所在数组
+            user_id = danmu.children(".danmu_user_id").val();//弹幕id
+			//alert(user_id);
+            url = "/countdownparty/user/forbiddenUser?user_id="+user_id;
+            $.ajax(url , {
+				//dataType: 'json',
+				contentType : "application/x-www-form-urlencoded;charset=UTF-8",
+				type:'PUT'
+            }).done(function (data) {
+            	let res = JSON.parse(data);
+				if(res.status == 20004) {
+					alert('屏蔽用户成功.可刷新页面重新获取弹幕');
+				}
+            }).fail(function (xhr, status) {
+                console.log('失败: ' + xhr.status + ', 原因: ' + status);
+            }).always(function () {
+                //console.log('请求完成: 无论成功或失败都会调用');
+            });
+        });
+
+
+        //获取弹幕
+        function getDanmuList() {//弹幕条数为0时拉取一批新的弹幕
+            let danmulist = $('#danmulist tr').size();//获取列表中的待审核弹幕数
+            if(danmulist == 0) {	
+        		if (confirm("确实要获取弹幕进行审核吗？")) {
+                	let url = '/countdownparty/danmaku/reviewingDanmukuList';
+                	$.get(url,function(res,status) {
+						let danmakuInfos = JSON.parse(res);
+						if(danmakuInfos.status == 20001) {
+                    		for (let danmakuInfo of danmakuInfos.data) {
+								//console.log(danmakuInfo);
+                        		addTr(danmakuInfo['id'],danmakuInfo['user_id'],danmakuInfo['content'],danmakuInfo['nickname'],danmakuInfo['dnickname'],danmakuInfo['school']);
+                    		}
+						} else {
+							$('#emptymsg').html('暂无未审核弹幕');
+						}
+                	});
+            	} else {
+					$('#emptymsg').html('暂无未审核弹幕');
+				}
+			}
+        }
+
+
+        function addTr(id,user_id,content,wx_nickname,d_nickname,school) {
+            let apg = dom.tr({},
+                dom.td({'class':'id'},''+id),
+					dom.input({'type':'hidden','value':''+user_id,'class':'danmu_user_id'},''),
+                dom.td({'class':'content'},''+content),
+                dom.td({'class':'wx_nickname'},''+wx_nickname),
+                dom.td({'class':'d_nickname'},''+d_nickname),
+                dom.td({'class':'school'},''+school),
+                dom.td({},
+                    dom.button({'class':'btn btn-success btn-sm danmu-success'},'通过'),' ',
+                    dom.button({'class':'btn btn-warning btn-sm danmu-delete'},'删除'),' ',
+                    dom.button({'class':'btn btn-danger btn-sm danmu-forbidden'},'拉黑'),                            
+                )
+            );
+            $('#danmulist').append(apg);
+        }
+    })
+</script>

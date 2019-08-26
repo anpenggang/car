@@ -31,13 +31,13 @@ class UserController extends BaseController {
 	 */
 	public function loginAction() {
 		
-		if ($this->getRequest()->getMethod() == "POST") {
+		if (true) {
 			//获取小程序传递过来的登录参数
 			$code = Common_Util::getHttpReqQuery($this,'code','Str','n',''); //code码，用于去微信官方换取openid和session_key
 			$rawData = Common_Util::getHttpReqQuery($this,'rawData','Str','n');//rawData
-			//$signature = Common_Util::getHttpReqQuery($this,'signature','Str','n','');//signature
-			//$encryptedData = Common_Util::getHttpReqQuery($this,'encryptedData','Str','n','');//encrytedData
-			//$iv = Common_Util::getHttpReqQuery($this,'iv','Str','n',''); //iv
+			$signature = Common_Util::getHttpReqQuery($this,'signature','Str','n','');//signature
+			$encryptedData = Common_Util::getHttpReqQuery($this,'encryptedData','Str','n','');//encrytedData
+			$iv = Common_Util::getHttpReqQuery($this,'iv','Str','n',''); //iv
 			//根据code获取用户的openid，作为用户在系统里面的唯一标识
 			$url = "https://api.weixin.qq.com/sns/jscode2session";
 			$post_data = [
@@ -47,8 +47,10 @@ class UserController extends BaseController {
 				'js_code' => $code
 			];
 			$wxret = json_decode(Common_Util::RequestHttpArray('post',$url,$post_data),true);
+			
 			//print_r($wxret);exit;
 			if (isset($wxret['openid'])) {//如果获取到openID则进行下一步处理，返回错误信息
+				$this->getUserPhone($wxret['session_key'],$encryptedData,$iv);
 				$user_info = $this->_model->getUserByOpenid($wxret['openid']);
 				if (!empty($user_info)) {//用户表中有用户信息
 					$rawdata = json_decode(html_entity_decode($rawData),true);
@@ -70,6 +72,86 @@ class UserController extends BaseController {
 		} else {
 			return Common_Util::returnJson('10007','请求方法有误');
 		}
+	}
+
+
+	public function login_v2Action() {
+		if ($this->getRequest()->getMethod() == "POST") {
+			//获取小程序传递过来的登录参数
+			$code = Common_Util::getHttpReqQuery($this,'code','Str','n',''); //code码，用于去微信官方换取openid和session_key
+			$rawData = Common_Util::getHttpReqQuery($this,'rawData','Str','n');//rawData
+			$signature = Common_Util::getHttpReqQuery($this,'signature','Str','n','');//signature
+			$encryptedData = Common_Util::getHttpReqQuery($this,'encryptedData','Str','n','');//encrytedData
+			$iv = Common_Util::getHttpReqQuery($this,'iv','Str','n',''); //iv
+			//根据code获取用户的openid，作为用户在系统里面的唯一标识
+			$url = "https://api.weixin.qq.com/sns/jscode2session";
+			$post_data = [
+				'grant_type' => 'authorization_code',
+				'appid' => $this->config->car->appid,
+				'secret' => $this->config->car->appsecret,
+				'js_code' => $code
+			];
+			$wxret = json_decode(Common_Util::RequestHttpArray('post',$url,$post_data),true);
+
+				//$this->getUserPhone('12313',$encryptedData,$iv);
+			//print_r($wxret);exit;
+			if (isset($wxret['openid'])) {//如果获取到openID则进行下一步处理，返回错误信息
+				$this->getUserPhone($wxret['session_key'],$encryptedData,$iv);
+				$user_info = $this->_model->getUserByOpenid($wxret['openid']);
+				if (!empty($user_info)) {//用户表中有用户信息
+					$rawdata = json_decode(html_entity_decode($rawData),true);
+					//判断其头像和昵称有无修改有的话更新数据表,其余业务交给更新方法完成
+					if ($user_info['nickname'] != $rawdata['nickName'] || $user_info['avatar_url'] != $rawdata['avatarUrl']) {
+						$this->updateUserInfo($wxret['openid'],$rawdata,$wxret);
+						return false;
+					}
+					unset($user_info['openid']);
+					//登录成功之后写入session
+					$user_info['sessionid'] = $this->writeSession($user_info['id'],$wxret);
+					return Common_Util::returnJson('20001','登录成功',$user_info);
+				}
+				//用户表中没有用户信息则调用添加方法，剩下的业务逻辑交给添加去处理
+				$this->addUser($wxret['openid'],$rawData,$wxret);
+				return false;
+			}
+			return Common_Util::returnJson('20002','请重新授权',$wxret);
+		} else {
+			return Common_Util::returnJson('10007','请求方法有误');
+		}
+
+	}
+
+	private function getUserPhoneAction() {
+		require APPLICATION_PATH ."/application/library/WXBizDataCrypt.php";
+		//$e = Common_Util::getHttpReqQuery($this,'encryptedData','Str','n','');//encrytedData
+		$code = Common_Util::getHttpReqQuery($this,'code','Str','n','');//encrytedData
+		$encryptedData = Common_Util::getHttpReqQuery($this,'encryptedData','Str','n','');//encrytedData
+		$iv = Common_Util::getHttpReqQuery($this,'iv','Str','n',''); //iv
+			//根据code获取用户的openid，作为用户在系统里面的唯一标识
+			$url = "https://api.weixin.qq.com/sns/jscode2session";
+			$post_data = [
+				'grant_type' => 'authorization_code',
+				'appid' => $this->config->car->appid,
+				'secret' => $this->config->car->appsecret,
+				'js_code' => $code
+			];
+			$wxret = json_decode(Common_Util::RequestHttpArray('post',$url,$post_data),true);
+			$sessionKey = $wxret['session_key'];
+
+		$appid = $this->config->car->appid;
+
+		$pc = new WXBizDataCrypt($appid, $sessionKey);
+		$errCode = $pc->decryptData($encryptedData, $iv, $data);
+
+		if ($errCode == 0) {
+			print($data . "\n");
+			return json_decode($data,true)['phoneNumber'];
+		} else {
+    			print($errCode . "\n");
+			var_dump($data);
+			return '';
+		}
+		
 	}
 
 	/**
@@ -103,7 +185,6 @@ class UserController extends BaseController {
 			'nickname' => $rawData['nickName'],
 			'gender' => $rawData['gender'],
 			'avatar_url' => $rawData['avatarUrl'],
-			'create_time' => time(),
 			'openid' => $openid
 		];
 		$result = $this->_model->addUser($param);
