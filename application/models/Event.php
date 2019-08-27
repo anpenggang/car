@@ -83,12 +83,19 @@ class EventModel extends BaseModel
 
     }
 
+    //修改活动状态
+    public function editStatus($event_id,$data) {
+        $this->_db->where('id',$event_id);
+        return $this->_db->update($this->_table, $data);
+    }
+
     //修改活动内容
     public function edit($event_id, $data, $event_img)
     {
         $car_model = new CarModel();
         //开启事务
         $this->_db->autocommit(false);
+        $this->_db->where('id',$event_id);
         $ret = $this->_db->update($this->_table, $data);
         if ($ret) {
             $image_ret = $car_model->processImage($this->_db, 8, $event_id, $event_img);
