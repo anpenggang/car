@@ -140,10 +140,10 @@ class CarController extends BaseController
         $data['is_made_china'] = Common_Util::getHttpReqQuery($this, 'is_made_china', 'Int', 'n', ''); //是否国产
         $data['brand_id'] = 1; //品牌ID
 
-        $data_t['appear'] = Common_Util::getHttpReqQuery($this, 'appear', 'Int', 'n', ''); //外观
-        $data_t['interior'] = Common_Util::getHttpReqQuery($this, 'interior', 'Int', 'n', ''); //内饰
-        $data_t['tech'] = Common_Util::getHttpReqQuery($this, 'tech', 'Int', 'n', ''); //内饰
-        $data_t['space'] = Common_Util::getHttpReqQuery($this, 'space', 'Int', 'n', ''); //空间
+        $data_t['appear'] = Common_Util::getHttpReqQuery($this, 'appear', 'Str', 'n', ''); //外观
+        $data_t['interior'] = Common_Util::getHttpReqQuery($this, 'interior', 'Str', 'n', ''); //内饰
+        $data_t['tech'] = Common_Util::getHttpReqQuery($this, 'tech', 'Str', 'n', ''); //内饰
+        $data_t['space'] = Common_Util::getHttpReqQuery($this, 'space', 'Str', 'n', ''); //空间
 
         $ret = $this->_model->editLineDetail($line_id,$data,$data_t);
         if ($ret) {
