@@ -112,10 +112,19 @@ class CarModel extends BaseModel
 
     }
 
+    //新增车型
     public function addModel($data)
     {
 
         $ret = $this->_db->insert($this->car_model_table, $data);
+        return $ret;
+
+    }
+    //修改车型
+    public function editModel($model_id,$data) {
+
+        $this->_db->where('id',$model_id);
+        $ret = $this->_db->update($this->car_model_table,$data);
         return $ret;
 
     }

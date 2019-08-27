@@ -196,5 +196,30 @@ class CarController extends BaseController
 
     }
 
+    //修改车型信息
+    public function editModelAction() {
+
+        $model_id = Common_Util::getHttpReqQuery($this, 'model_id', 'Int', 'n', ''); //车型id
+        $data['line_id'] = Common_Util::getHttpReqQuery($this, 'line_id', 'Int', 'n', ''); //车系id
+        $data['name'] = Common_Util::getHttpReqQuery($this, 'name', 'Str', 'n', ''); //车型名称
+        $data['short_name'] = Common_Util::getHttpReqQuery($this, 'short_name', 'Str', 'n', ''); //简称
+        $data['features'] = Common_Util::getHttpReqQuery($this, 'features', 'Str', 'n', ''); //描述
+        $data['ceiling_price'] = Common_Util::getHttpReqQuery($this, 'ceiling_price', 'Str', 'n', ''); //最低价格
+        $data['floor_price'] = Common_Util::getHttpReqQuery($this, 'floor_price', 'Str', 'n', ''); //最高价格
+        $data['price'] = Common_Util::getHttpReqQuery($this, 'price', 'Str', 'n', ''); //裸车价
+        $data['floor_oil'] = Common_Util::getHttpReqQuery($this, 'floor_oil', 'Str', 'n', ''); //最低燃油
+        $data['ceiling_oil'] = Common_Util::getHttpReqQuery($this, 'ceiling_oil', 'Str', 'n', ''); //最高燃油
+        $data['cover_img'] = Common_Util::getHttpReqQuery($this, 'cover_img', 'Str', 'n', ''); //封面图片
+        $data['updated_at'] = date("Y-m-d H:i:s");
+        $ret = $this->_model->editModel($model_id,$data);
+        if ($ret) {
+            return $this->ajaxReturn(0,'ok',[]);
+        } else {
+            return $this->ajaxReturn(-1,'error please try again',[]);
+        }
+
+
+    }
+
 
 }//endclass
