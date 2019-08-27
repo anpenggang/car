@@ -175,11 +175,11 @@ class CarModel extends BaseModel
     public function processImage($connection, $type, $origin_id, $event_img)
     {
 
-        $image_model = new CarBannerModel();
-        $connection->where('type', $type)->where('origin_id', $origin_id);
-        $connection->delete('car_image');
-        $event_img = json_decode($event_img, true);
         if (!empty($event_img)) {//添加活动照片
+            $connection->where('type', $type)->where('origin_id', $origin_id);
+            $connection->delete('car_image');
+            $event_img = json_decode($event_img, true);
+            print_r($event_img);
             foreach ($event_img as $key => $value) {
                 $insert_data = [
                     'origin_id' => $origin_id,
@@ -189,7 +189,8 @@ class CarModel extends BaseModel
                     'width' => $value['width'],
                     'height' => $value['height'],
                 ];
-                $insert_ret = $image_model->addImage($connection, $insert_data);
+                $insert_ret = $connection->insert('car_image', $insert_data);
+                var_dump($insert_ret);
                 #$insert_ret = $this->_db->insert('car_image', $insert_data);
                 if (!$insert_ret) {
                     //回滚
