@@ -102,7 +102,7 @@ class EventController extends BaseController
         $event_id = Common_Util::getHttpReqQuery($this, 'event_id', 'Str', 'n');//活动标题
         $data['deleted'] = 1;//活动状态
         $data['updated_at'] = date('Y-m-d H:i:s');
-        $ret = $this->_model->edit($event_id, $data);
+        $ret = $this->_model->editStatus($event_id, $data);
 
         if ($ret) {
             return $this->ajaxReturn(0, 'ok');
