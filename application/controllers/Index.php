@@ -31,7 +31,7 @@ class IndexController extends BaseController
             'width' =>  null,
             'height' =>  null
         ];
-        echo json_decode($arr);exit;
+        echo json_encode($arr);exit;
         $username = Yaf_Session::getInstance()->get('username');
         if ($username == NULL) {
             $this->redirect('/index/login');
