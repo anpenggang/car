@@ -99,7 +99,7 @@ class CarModel extends BaseModel
                   ,cl.is_made_china
                    from car_line cl
                    where cl.deleted = 0
-                   and brand_id = {$brand_id}
+                   and brand_id = {$line_id}
                   ";
         return $this->_db->rawQuery($sql);
 

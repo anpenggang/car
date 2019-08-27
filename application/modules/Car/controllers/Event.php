@@ -50,7 +50,7 @@ class EventController extends BaseController
         $evnet_details = $this->_model->detail($event_id);
         if (!empty($evnet_details)) {
             $evnet_detail = $evnet_details[0];
-            $evnet_detail['detail_img'] = $car_banner_model->getImageList(8, $evnet_detail['id']);
+            $evnet_detail['detail_img'] = $car_banner_model->getImageList(8, $evnet_detail['event_id']);
             return $this->ajaxReturn(0, 'ok', $evnet_detail);
         } else {
             return $this->ajaxReturn(-1, 'not find info', []);
