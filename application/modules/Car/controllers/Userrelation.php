@@ -54,14 +54,14 @@ class UserrelationController extends BaseController
     public function userAddEventAction() {
         $user_model = new CarUserModel();
         $user_id = $this->_userinfo['user_id'];
-        $event_id = Common_Util::getHttpReqQuery($this, 'phone', 'Str', 'n');//用户手机号
+        $event_id = Common_Util::getHttpReqQuery($this, 'event_id', 'Int', 'n');//用户手机号
         $ret = $user_model->addUserEvent($user_id,$event_id);
 
         if ($ret == '不可重复参加') {
             return $this->ajaxReturn(-1, '不可重复参加');
         } else {
             if ($ret) {
-                return $this->ajaxReturn(0, 'ok', ['phone' => $phone]);
+                return $this->ajaxReturn(0, 'ok');
             } else {
                 return $this->ajaxReturn(-1, 'error please try again');
             }
