@@ -94,5 +94,22 @@ class CarUserModel extends BaseModel
 
     }
 
+    //用户活动信息关联
+    public function addUserEvent($user_id,$event_id) {
+        $this->_db->where('user_id',$user_id)
+            ->where('event_id',$event_id)
+            ->where('deleted',0);
+        $is_added = $this->_db->getOne('user_event');
+        if (!empty($is_added)) {
+            return '不可重复参加';
+        }
+        $ret = $this->_db->insert('user_event',[
+            'event_id' => $event_id,
+            'user_id' => $user_id,
+        ]);
+        return $ret;
+
+    }
+
 
 }
