@@ -177,12 +177,7 @@ class CarModel extends BaseModel
 
         $image_model = new CarBannerModel();
         $connection->where('type', $type)->where('origin_id', $origin_id);
-        $img_delete = $connection->delete('car_image');
-        if (!$img_delete) {
-            //回滚
-            $connection->rollback();
-            return false;
-        }
+        $connection->delete('car_image');
         $event_img = json_decode($event_img, true);
         if (!empty($event_img)) {//添加活动照片
             foreach ($event_img as $key => $value) {
