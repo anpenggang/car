@@ -71,9 +71,9 @@ class EventModel extends BaseModel
             return false;
         }
 
-        $image_tech_ret = $car_model->processImage($this->_db, 8, $event_id, $event_img);
+        $image_ret = $car_model->processImage($this->_db, 8, $event_id, $event_img);
 
-        if (!$image_tech_ret) {
+        if (!$image_ret) {
             //回滚
             $this->_db->rollback();
             return false;
@@ -91,33 +91,14 @@ class EventModel extends BaseModel
         $this->_db->autocommit(false);
         $ret = $this->_db->update($this->_table, $data);
         if ($ret) {
-            $this->_db->where('type', 8)->where('origin_id');
-            $img_delete = $this->_db->delete('car_image');
-            if (!$img_delete) {
+            $image_ret = $car_model->processImage($this->_db, 8, $event_id, $event_img);
+
+            if (!$image_ret) {
                 //回滚
                 $this->_db->rollback();
                 return false;
             }
-            $event_img = json_decode($event_img, true);
-            if (!empty($event_img)) {//添加活动照片
-                foreach ($event_img as $key => $value) {
-                    $insert_data = [
-                        'origin_id' => $event_id,
-                        'type' => 8,
-                        'img_src' => $value['img_src'],
-                        'remark' => $value['remark'],
-                        'width' => $value['width'],
-                        'height' => $value['height'],
-                    ];
-                    $insert_ret = $image_model->addImage($this->_db,$insert_data);
-                    #$insert_ret = $this->_db->insert('car_image', $insert_data);
-                    if (!$insert_ret) {
-                        //回滚
-                        $this->_db->rollback();
-                        return false;
-                    }
-                }
-            }
+
         } else {
             //回滚
             $this->_db->rollback();
