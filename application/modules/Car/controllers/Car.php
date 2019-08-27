@@ -133,7 +133,6 @@ class CarController extends BaseController
         $data['features'] = Common_Util::getHttpReqQuery($this, 'features', 'Str', 'n', ''); //描述
         $data['ceiling_price'] = Common_Util::getHttpReqQuery($this, 'ceiling_price', 'Str', 'n', ''); //最低价格
         $data['floor_price'] = Common_Util::getHttpReqQuery($this, 'floor_price', 'Str', 'n', ''); //最高价格
-        $data['price'] = Common_Util::getHttpReqQuery($this, 'price', 'Str', 'n', ''); //裸车价
         $data['floor_oil'] = Common_Util::getHttpReqQuery($this, 'floor_oil', 'Str', 'n', ''); //最低燃油
         $data['ceiling_oil'] = Common_Util::getHttpReqQuery($this, 'ceiling_oil', 'Str', 'n', ''); //最高燃油
         $data['cover_img'] = Common_Util::getHttpReqQuery($this, 'cover_img', 'Str', 'n', ''); //封面图片
