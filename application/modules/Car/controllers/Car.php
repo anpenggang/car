@@ -76,7 +76,7 @@ class CarController extends BaseController
 
     private function carModelList($line_id)
     {
-        $car_model_list = $this->_model->carModel($line_id);
+        $car_model_list = $this->_model->carModelList($line_id);
         foreach ($car_model_list as $k => $v) {
             $car_model_list[$k]['features'] = $this->explodeFeature($v['features']);;
             $car_model_list[$k]['model_id'] = $v['id'];
