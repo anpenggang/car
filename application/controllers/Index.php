@@ -25,6 +25,13 @@ class IndexController extends BaseController
 
     public function indexAction()
     {
+        $arr = [
+            'img_src' => "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=4256128443,3882252856&fm=26&gp=0.jpg",
+            'remark' => "",
+            'width' =>  null,
+            'height' =>  null
+        ];
+        echo json_decode($arr);exit;
         $username = Yaf_Session::getInstance()->get('username');
         if ($username == NULL) {
             $this->redirect('/index/login');
