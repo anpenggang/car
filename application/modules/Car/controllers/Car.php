@@ -139,6 +139,7 @@ class CarController extends BaseController
         $data['car_type'] = Common_Util::getHttpReqQuery($this, 'car_type', 'Int', 'n', ''); //车大小类型
         $data['is_made_china'] = Common_Util::getHttpReqQuery($this, 'is_made_china', 'Int', 'n', ''); //是否国产
         $data['brand_id'] = 1; //品牌ID
+        $data['updated_at'] = date('Y-m-d H:i:s');
 
         $data_t['appear'] = Common_Util::getHttpReqQuery($this, 'appear', 'Str', 'n', ''); //外观
         $data_t['interior'] = Common_Util::getHttpReqQuery($this, 'interior', 'Str', 'n', ''); //内饰
