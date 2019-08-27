@@ -50,7 +50,7 @@ class UserController extends BaseController {
 			
 			//print_r($wxret);exit;
 			if (isset($wxret['openid'])) {//如果获取到openID则进行下一步处理，返回错误信息
-				$this->getUserPhone($wxret['session_key'],$encryptedData,$iv);
+				#$this->getUserPhone($wxret['session_key'],$encryptedData,$iv);
 				$user_info = $this->_model->getUserByOpenid($wxret['openid']);
 				if (!empty($user_info)) {//用户表中有用户信息
 					$rawdata = json_decode(html_entity_decode($rawData),true);
