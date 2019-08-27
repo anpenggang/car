@@ -25,14 +25,15 @@ class BaseController extends Yaf_Controller_Abstract {
 		//输出头消息，防止中文乱码
 		header("Content-Type:text/html;charset=utf8");
 
-        	//本项目作为接口返回数据，关闭自动渲染视图
-        	Yaf_Dispatcher::getInstance()->disableView();
+        //本项目作为接口返回数据，关闭自动渲染视图
+        Yaf_Dispatcher::getInstance()->disableView();
 
 	 	$this->config = new Yaf_Config_Ini( APPLICATION_PATH . "/conf/application.ini", 'product');
-                $redis = new \Redis();
-                $redis->connect($this->config->redis->host,$this->config->redis->port);
-                //$redis->auth('jiangfengloveheibaixiaoyuan');
-                $this->_redis = $redis;
+
+	 	$redis = new \Redis();
+        $redis->connect($this->config->redis->host,$this->config->redis->port);
+        //$redis->auth('jiangfengloveheibaixiaoyuan');
+        $this->_redis = $redis;
 
 
 	}
@@ -155,6 +156,7 @@ class BaseController extends Yaf_Controller_Abstract {
         return Common_Util::returnJson($status,$msg,$data,$data_access);
 
     }
+
     public function fileUpload()
     {
         ini_set('memory_limit', '720M'); // 临时设置最大内存占用为3G
@@ -181,7 +183,10 @@ class BaseController extends Yaf_Controller_Abstract {
         $result = move_uploaded_file($filetempname, $uploadfile);//假如上传到当前目录下
         if ($result) {
             $url = "https://guangguailuli.com/public/images/car/".$name;
-            return $this->ajaxReturn(0,'ok',['url' => $url]);
+            list($width, $height, $type, $attr) = getimagesize(APPLICATION_PATH.'/public/images/car/'.$name);
+            return $this->ajaxReturn(0,'ok',['url' => $url
+                ,'width' => $width
+                ,'height' => $height]);
         } else {
             return $this->ajaxReturn(-1,'error',[]);
         }
