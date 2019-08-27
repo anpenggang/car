@@ -301,6 +301,39 @@ class Common_Util{
 
     }
 
+    /**
+     * 日志记录
+     * @param $log
+     * @param $level 日志等级
+     * @link https://docs.phalconphp.com/zh/latest/reference/logging.html
+     */
+    public static function write_log($log, $level = 'error')
+    {
+
+        date_default_timezone_set("Asia/Shanghai");//服务器默认时间方便统计时间2019/02/27
+        $debugInfo = debug_backtrace();
+        $log_info = [];
+        if (isset($debugInfo[1])) {
+            $debugInfo = $debugInfo[1];
+            $log_info['function'] = $debugInfo['function'];
+            $log_info['class'] = $debugInfo['class'];
+        } else {
+            $log_info['function'] = __FUNCTION__;
+            $log_info['class'] = __CLASS__;
+        }
+        $log_info['type'] ='%type%';
+        $log_info['timestamp'] = '%date%';
+        $log_info['data'] =$log;
+
+        empty($level) && $level = 'error';
+        is_array($log) && $log = json_encode($log);
+
+        $log_info = json_encode($log_info, JSON_UNESCAPED_UNICODE);
+        $level = strtolower($level);
+        error_log(print_r($log_info,true),3,APPLICATION_PATH.'/application/runtime'.date('Y-m-d').'log');
+
+    }
+
 
 }     
 /* vim: set expandtab ts=4 sw=4 sts=4 tw=100: */

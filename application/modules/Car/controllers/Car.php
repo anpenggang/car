@@ -51,7 +51,7 @@ class CarController extends BaseController
 
         $line_id = Common_Util::getHttpReqQuery($this, 'line_id', 'Int', 'n', ''); //车系id
         //首页列表
-        $car_line_list = $this->_model->carLineList();
+        $car_line_list = $this->_model->carLineDetail($line_id);
         foreach ($car_line_list as $k => $v) {
             $car_line_list[$k]['features'] = $this->explodeFeature($v['features']);
             $car_line_list[$k]['line_id'] = $v['id'];
@@ -104,6 +104,95 @@ class CarController extends BaseController
     public function explodeFeature($content) {
 
         return explode("\n", $content);
+
+    }
+
+
+    /**
+     *   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+    `name` varchar(2048) NOT NULL DEFAULT '' COMMENT '车系名',
+    `short_name` varchar(512) DEFAULT NULL COMMENT '名称简称',
+    `brand_id` int(11) NOT NULL DEFAULT '0' COMMENT '品牌ID',
+    `features` text COMMENT '产品亮点,使用回车分割',
+    `slogan` varchar(512) DEFAULT NULL COMMENT '标语',
+    `ceiling_price` int(11) NOT NULL DEFAULT '0' COMMENT '最高价(单位分)',
+    `floor_price` decimal(11,0) NOT NULL DEFAULT '0' COMMENT '最低价(单位分)',
+    `floor_oil` int(11) NOT NULL DEFAULT '0' COMMENT '最高燃油(单位毫升)',
+    `cover_img` int(11) DEFAULT NULL COMMENT '封面图片',
+    `ceiling_oil` int(11) NOT NULL DEFAULT '0' COMMENT '最低燃油(单位毫升)',
+    `car_type_word` varchar(512) DEFAULT NULL COMMENT '车类型文字版本',
+    `car_type` tinyint(4) NOT NULL DEFAULT '1' COMMENT '车大小类型',
+    `is_made_china` tinyint(4) DEFAULT '1' COMMENT '是否国产',
+    `deleted` tinyint(4) unsigned NOT NULL DEFAULT '0' COMMENT '状态（0:未删除，1:已删除）',
+     */
+    //修改车系详情接口
+    public function editLineDetailAction() {
+        $line_id = Common_Util::getHttpReqQuery($this, 'line_id', 'Int', 'n', ''); //车系id
+        $data['name'] = Common_Util::getHttpReqQuery($this, 'name', 'Str', 'n', ''); //车型名称
+        $data['short_name'] = Common_Util::getHttpReqQuery($this, 'short_name', 'Str', 'n', ''); //简称
+        $data['features'] = Common_Util::getHttpReqQuery($this, 'features', 'Str', 'n', ''); //描述
+        $data['ceiling_price'] = Common_Util::getHttpReqQuery($this, 'ceiling_price', 'Str', 'n', ''); //最低价格
+        $data['floor_price'] = Common_Util::getHttpReqQuery($this, 'floor_price', 'Str', 'n', ''); //最高价格
+        $data['price'] = Common_Util::getHttpReqQuery($this, 'price', 'Str', 'n', ''); //裸车价
+        $data['floor_oil'] = Common_Util::getHttpReqQuery($this, 'floor_oil', 'Str', 'n', ''); //最低燃油
+        $data['ceiling_oil'] = Common_Util::getHttpReqQuery($this, 'ceiling_oil', 'Str', 'n', ''); //最高燃油
+        $data['cover_img'] = Common_Util::getHttpReqQuery($this, 'cover_img', 'Str', 'n', ''); //封面图片
+        $data['car_type'] = Common_Util::getHttpReqQuery($this, 'car_type', 'Int', 'n', ''); //车大小类型
+        $data['is_made_china'] = Common_Util::getHttpReqQuery($this, 'is_made_china', 'Int', 'n', ''); //是否国产
+        $data['brand_id'] = 1; //品牌ID
+
+        $data_t['appear'] = Common_Util::getHttpReqQuery($this, 'appear', 'Int', 'n', ''); //外观
+        $data_t['interior'] = Common_Util::getHttpReqQuery($this, 'interior', 'Int', 'n', ''); //内饰
+        $data_t['tech'] = Common_Util::getHttpReqQuery($this, 'tech', 'Int', 'n', ''); //内饰
+        $data_t['space'] = Common_Util::getHttpReqQuery($this, 'space', 'Int', 'n', ''); //空间
+
+        $ret = $this->_model->editLineDetail($line_id,$data,$data_t);
+        if ($ret) {
+            return $this->ajaxReturn(0,'ok',[]);
+        } else {
+            return $this->ajaxReturn(-1,'error please try again',[]);
+        }
+    }
+
+    //添加车型列表
+
+    /**
+     * `name` varchar(1024) NOT NULL DEFAULT '' COMMENT '车型名称',
+    `short_name` varchar(512) DEFAULT NULL COMMENT '名称简称',
+    `features` text COMMENT '产品亮点,使用回车分割',
+    `ceiling_price` int(11) NOT NULL DEFAULT '0' COMMENT '最高价(单位分)',
+    `floor_price` int(11) NOT NULL DEFAULT '0' COMMENT '最低价(单位分)',
+    `guiding_price` int(11) DEFAULT NULL COMMENT '指导价(单位分)',
+    `down_payment` int(11) DEFAULT NULL COMMENT '首付款',
+    `price` int(11) NOT NULL COMMENT '裸车价(单位分)',
+    `slogan` varchar(512) DEFAULT NULL COMMENT '标语',
+    `floor_oil` int(11) NOT NULL DEFAULT '0' COMMENT '最高燃油(单位毫升)',
+    `ceiling_oil` int(11) NOT NULL DEFAULT '0' COMMENT '最低燃油(单位毫升)',
+    `deleted` tinyint(4) unsigned NOT NULL DEFAULT '0' COMMENT '状态（0:未删除，1:已删除）',
+    `line_id` int(11) NOT NULL DEFAULT '0' COMMENT '车系ID',
+    `remark` varchar(2048) DEFAULT NULL COMMENT '备注',
+    `other_policies` text COMMENT '其他政策',
+    `purchase_tax` int(11) DEFAULT NULL COMMENT '购置税',
+     */
+    public function addModelAction () {
+
+        $data['line_id'] = Common_Util::getHttpReqQuery($this, 'line_id', 'Int', 'n', ''); //车系id
+        $data['name'] = Common_Util::getHttpReqQuery($this, 'name', 'Str', 'n', ''); //车型名称
+        $data['short_name'] = Common_Util::getHttpReqQuery($this, 'short_name', 'Str', 'n', ''); //简称
+        $data['features'] = Common_Util::getHttpReqQuery($this, 'features', 'Str', 'n', ''); //描述
+        $data['ceiling_price'] = Common_Util::getHttpReqQuery($this, 'ceiling_price', 'Str', 'n', ''); //最低价格
+        $data['floor_price'] = Common_Util::getHttpReqQuery($this, 'floor_price', 'Str', 'n', ''); //最高价格
+        $data['price'] = Common_Util::getHttpReqQuery($this, 'price', 'Str', 'n', ''); //裸车价
+        $data['floor_oil'] = Common_Util::getHttpReqQuery($this, 'floor_oil', 'Str', 'n', ''); //最低燃油
+        $data['ceiling_oil'] = Common_Util::getHttpReqQuery($this, 'ceiling_oil', 'Str', 'n', ''); //最高燃油
+        $data['cover_img'] = Common_Util::getHttpReqQuery($this, 'cover_img', 'Str', 'n', ''); //封面图片
+
+        $ret = $this->_model->addModel($data);
+        if ($ret) {
+            return $this->ajaxReturn(0,'ok',[]);
+        } else {
+            return $this->ajaxReturn(-1,'error please try again',[]);
+        }
 
     }
 

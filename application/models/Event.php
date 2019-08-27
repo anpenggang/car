@@ -61,33 +61,19 @@ class EventModel extends BaseModel
     //添加活动
     public function add($data, $event_img)
     {
-        $image_model = new CarBannerModel();
+        $car_model = new CarModel();
         //开启事务
         $this->_db->autocommit(false);
         $event_id = $this->_db->insert($this->_table, $data);
-        if ($event_id) {
-            $event_img = json_decode($event_img, true);
-            if (!empty($event_img)) {//添加活动照片
-                foreach ($event_img as $key => $value) {
-                    //echo $value['menu_value'];exit;
-                    $insert_data = [
-                        'origin_id' => $event_id,
-                        'type' => 8,
-                        'img_src' => $value['img_src'],
-                        'remark' => $value['remark'],
-                        'width' => $value['width'],
-                        'height' => $value['height'],
-                    ];
-                    $insert_ret = $image_model->addImage($this->_db,$insert_data);
-                    #$insert_ret = $this->_db->insert('car_image', $insert_data);
-                    if (!$insert_ret) {
-                        //回滚
-                        $this->_db->rollback();
-                        return false;
-                    }
-                }
-            }
-        } else {
+        if (!$event_id) {
+            //回滚
+            $this->_db->rollback();
+            return false;
+        }
+
+        $image_tech_ret = $car_model->processImage($this->_db, 8, $event_id, $event_img);
+
+        if (!$image_tech_ret) {
             //回滚
             $this->_db->rollback();
             return false;
@@ -100,10 +86,7 @@ class EventModel extends BaseModel
     //修改活动内容
     public function edit($event_id, $data, $event_img)
     {
-        $this->_db->where('id', $event_id);
-        $ret = $this->_db->update($this->_table, $data);
-        return $ret;
-
+        $car_model = new CarModel();
         //开启事务
         $this->_db->autocommit(false);
         $ret = $this->_db->update($this->_table, $data);

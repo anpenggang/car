@@ -99,7 +99,7 @@ class CarModel extends BaseModel
                   ,cl.is_made_china
                    from car_line cl
                    where cl.deleted = 0
-                   and brand_id = {$line_id}
+                   and id = {$line_id}
                   ";
         return $this->_db->rawQuery($sql);
 
@@ -112,5 +112,99 @@ class CarModel extends BaseModel
 
     }
 
-}
+    public function addModel($data)
+    {
 
+        $ret = $this->_db->insert($this->car_model_table, $data);
+        return $ret;
+
+    }
+
+    //编辑车系详情
+    public function editLineDetail($line_id, $data, $data_t)
+    {
+
+        try {
+            //开启事务
+            $this->_db->autocommit(false);
+            $ret = $this->_db->update($this->car_line_table, $data);
+            if (!$ret) {
+                //回滚
+                $this->_db->rollback();
+                return false;
+            }
+            //外观
+            $image_appear_ret = $this->processImage($this->_db, 4, $line_id, $data_t['appear']);
+            if (!$image_appear_ret) {
+                //回滚
+                $this->_db->rollback();
+                return false;
+            }
+            //内饰
+            $image_interior_ret = $this->processImage($this->_db, 5, $line_id, $data_t['interior']);
+            if (!$image_interior_ret) {
+                //回滚
+                $this->_db->rollback();
+                return false;
+            }
+            //科技
+            $image_tech_ret = $this->processImage($this->_db, 6, $line_id, $data_t['tech']);
+            if (!$image_tech_ret) {
+                //回滚
+                $this->_db->rollback();
+                return false;
+            }
+            //空间
+            $image_space_ret = $this->processImage($this->_db, 7, $line_id, $data_t['space']);
+            if (!$image_space_ret) {
+                //回滚
+                $this->_db->rollback();
+                return false;
+            }
+            $this->_db->commit();
+            return $line_id;
+
+        } catch (Exception $e) {
+            Common_Util::write_log('code -2 编辑车辆详情失败' . $e->getMessage());
+        }
+
+    }
+
+    //处理车系图片
+    public function processImage($connection, $type, $origin_id, $event_img)
+    {
+
+        $image_model = new CarBannerModel();
+        $connection->where('type', $type)->where('origin_id', $origin_id);
+        $img_delete = $connection->delete('car_image');
+        if (!$img_delete) {
+            //回滚
+            $connection->rollback();
+            return false;
+        }
+        $event_img = json_decode($event_img, true);
+        if (!empty($event_img)) {//添加活动照片
+            foreach ($event_img as $key => $value) {
+                $insert_data = [
+                    'origin_id' => $origin_id,
+                    'type' => $type,
+                    'img_src' => $value['img_src'],
+                    'remark' => $value['remark'],
+                    'width' => $value['width'],
+                    'height' => $value['height'],
+                ];
+                $insert_ret = $image_model->addImage($connection, $insert_data);
+                #$insert_ret = $this->_db->insert('car_image', $insert_data);
+                if (!$insert_ret) {
+                    //回滚
+                    $connection->rollback();
+                    return false;
+                }
+            }
+        }
+
+        return true;
+
+    }
+
+}
