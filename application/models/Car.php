@@ -127,6 +127,7 @@ class CarModel extends BaseModel
         try {
             //开启事务
             $this->_db->autocommit(false);
+            $this->_db->where('id',$line_id);
             $ret = $this->_db->update($this->car_line_table, $data);
             if (!$ret) {
                 //回滚
