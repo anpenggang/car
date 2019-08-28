@@ -182,7 +182,7 @@ class CarUserModel extends BaseModel
                 ,cm.name as model_name
                 ,features as model_features
                 from user_model um
-                left join car_model cm cm.id = um.model_id
+                left join car_model on cm cm.id = um.model_id
                 where um.user_id = $user_id
                 and um.deleted = 0
                 and cm.deleted = 0
