@@ -272,7 +272,7 @@ class CarModel extends BaseModel
         if (!empty($cal_infos)) {
             $cal_info = $cal_infos[0];
             $stage_infos_sql = "select
-                    ,id
+                    id
                     ,model_id
                     ,stages_times
                     ,stage_interest
