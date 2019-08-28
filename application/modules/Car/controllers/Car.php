@@ -218,7 +218,52 @@ class CarController extends BaseController
             return $this->ajaxReturn(-1,'error please try again',[]);
         }
 
+    }
 
+    /**
+     * `name` varchar(1024) NOT NULL DEFAULT '' COMMENT '车型名称',
+    `short_name` varchar(512) DEFAULT NULL COMMENT '名称简称',
+    `features` text COMMENT '产品亮点,使用回车分割',
+    `ceiling_price` int(11) NOT NULL DEFAULT '0' COMMENT '最高价(单位分)',
+    `floor_price` int(11) NOT NULL DEFAULT '0' COMMENT '最低价(单位分)',
+    `guiding_price` int(11) DEFAULT NULL COMMENT '指导价(单位分)',
+    `down_payment` int(11) DEFAULT NULL COMMENT '首付款',
+    `price` int(11) NOT NULL COMMENT '裸车价(单位分)',
+    `slogan` varchar(512) DEFAULT NULL COMMENT '标语',
+    `floor_oil` int(11) NOT NULL DEFAULT '0' COMMENT '最高燃油(单位毫升)',
+    `ceiling_oil` int(11) NOT NULL DEFAULT '0' COMMENT '最低燃油(单位毫升)',
+    `deleted` tinyint(4) unsigned NOT NULL DEFAULT '0' COMMENT '状态（0:未删除，1:已删除）',
+    `line_id` int(11) NOT NULL DEFAULT '0' COMMENT '车系ID',
+    `remark` varchar(2048) DEFAULT NULL COMMENT '备注',
+    `other_policies` text COMMENT '其他政策',
+    `purchase_tax` int(11) DEFAULT NULL COMMENT '购置税',
+     */
+    //编辑车型计算器后台
+    public function editModelCalAction() {
+        $model_id = Common_Util::getHttpReqQuery($this, 'model_id', 'Int', 'n', ''); //车型id
+        $data['guiding_price'] = Common_Util::getHttpReqQuery($this, 'guiding_price', 'Int', 'n', ''); //指导价格
+        $data['price'] = Common_Util::getHttpReqQuery($this, 'price', 'Int', 'n', ''); //裸车价
+        $data['down_payment'] = Common_Util::getHttpReqQuery($this, 'down_payment', 'Int', 'n', ''); //首付款
+        $data['remark'] = Common_Util::getHttpReqQuery($this, 'remark', 'Str', 'n', ''); //备注
+        $data['other_policies'] = Common_Util::getHttpReqQuery($this, 'other_policies', 'Str', 'n', ''); //其他优惠
+        $data['purchase_tax'] = Common_Util::getHttpReqQuery($this, 'purchase_tax', 'Str', 'n', ''); //其他优惠
+        $stage_info = Common_Util::getHttpReqQuery($this, 'stage_info', 'Str', 'n', ''); //分期信息
+
+        $data['updated_at'] = date("Y-m-d H:i:s");
+        $ret = $this->_model->editModelCal($model_id,$data,$stage_info);
+        if ($ret) {
+            return $this->ajaxReturn(0,'ok',[]);
+        } else {
+            return $this->ajaxReturn(-1,'error please try again',[]);
+        }
+
+    }
+
+    //获取车型计算器
+    public function getModelCalAction() {
+        $model_id = Common_Util::getHttpReqQuery($this, 'model_id', 'Int', 'n', ''); //车型id
+        $ret = $this->_model->getModelCal($model_id);
+        return $this->ajaxReturn(0,'ok',$ret);
     }
 
 

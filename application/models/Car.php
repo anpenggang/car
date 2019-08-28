@@ -199,7 +199,7 @@ class CarModel extends BaseModel
                     'height' => $value['height'],
                 ];
                 $insert_ret = $connection->insert('car_image', $insert_data);
-                var_dump($insert_ret);
+                #var_dump($insert_ret);
                 #$insert_ret = $this->_db->insert('car_image', $insert_data);
                 if (!$insert_ret) {
                     //回滚
@@ -210,6 +210,81 @@ class CarModel extends BaseModel
         }
 
         return true;
+
+    }
+
+    //修改车型计算器
+    public function editModelCal($model_id,$data,$stage_info) {
+
+        try {
+            //开启事务
+            $this->_db->autocommit(false);
+            $this->_db->where('id',$model_id);
+            $ret = $this->_db->update($this->car_model_table, $data);
+            if (!$ret) {
+                //回滚
+                $this->_db->rollback();
+                return false;
+            }
+            //外观
+            if (!empty($stage_info)) {
+                $stage_info_arr = json_decode($stage_info,true);
+                $this->_db->where('model_id',$model_id);
+                $this->_db->delete('car_model_stage');
+                foreach ($stage_info_arr as $key => $value) {
+                    $insert_data = [
+                        'stages_times' => $value['stages_times'],
+                        'stage_interest' => $value['stage_interest'],
+                        'model_id' => $model_id,
+                        'updated_at' => date('Y-m-d H:i:s'),
+                    ];
+                    $insert_ret = $this->_db->insert('car_model_stage', $insert_data);
+                    if (!$insert_ret) {
+                        //回滚
+                        $this->_db->rollback();
+                        return false;
+                    }
+                }
+            }
+
+            $this->_db->commit();
+            return $model_id;
+
+        } catch (Exception $e) {
+            Common_Util::write_log('code -2 编辑车辆详情失败' . $e->getMessage());
+        }
+    }
+
+    //获取车型计算器信息
+    public function getModelCal($model_id) {
+
+        $cal_infos_sql = "select
+                id
+                ,guiding_price
+                ,down_payment
+                ,price
+                ,remark
+                ,other_policies
+                ,purchase_tax
+                from car_model
+                where id = $model_id";
+        $cal_infos = $this->_db->rawQuery($cal_infos_sql);
+        if (!empty($cal_infos)) {
+            $cal_info = $cal_infos[0];
+            $stage_infos_sql = "select
+                    ,id
+                    ,model_id
+                    ,stages_times
+                    ,stage_interest
+                    from car_model_stage
+                    where model_id = $model_id
+                      and deleted = 0";
+            $stage_infos = $this->_db->rawQuery($stage_infos_sql);
+            $cal_info['stage_info'] = $stage_infos;
+            return $cal_info;
+        } else {
+            return [];
+        }
 
     }
 
