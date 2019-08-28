@@ -177,7 +177,7 @@ class BaseController extends Yaf_Controller_Abstract {
         //获取上传文件的扩展名
         $extend = strrchr($file['name'], '.');
         //上传后的文件名
-        $name = $filename . $time . mt_rand(10000, 99999) . $extend;
+        $name =  $time . mt_rand(10000, 99999) . $extend;
         $uploadfile = $filePath . $name;//上传后的文件名地址
         $filetempname = $file['tmp_name'];
         $result = move_uploaded_file($filetempname, $uploadfile);//假如上传到当前目录下

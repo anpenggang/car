@@ -246,7 +246,7 @@ class CarController extends BaseController
         $data['down_payment'] = Common_Util::getHttpReqQuery($this, 'down_payment', 'Int', 'n', ''); //首付款
         $data['remark'] = Common_Util::getHttpReqQuery($this, 'remark', 'Str', 'n', ''); //备注
         $data['other_policies'] = Common_Util::getHttpReqQuery($this, 'other_policies', 'Str', 'n', ''); //其他优惠
-        $data['purchase_tax'] = Common_Util::getHttpReqQuery($this, 'purchase_tax', 'Str', 'n', ''); //其他优惠
+        $data['purchase_tax'] = Common_Util::getHttpReqQuery($this, 'purchase_tax', 'Str', 'n', ''); //购置税
         $stage_info = Common_Util::getHttpReqQuery($this, 'stage_info', 'Str', 'n', ''); //分期信息
 
         $data['updated_at'] = date("Y-m-d H:i:s");
