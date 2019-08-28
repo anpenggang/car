@@ -330,7 +330,7 @@ class Common_Util{
 
         $log_info = json_encode($log_info, JSON_UNESCAPED_UNICODE);
         $level = strtolower($level);
-        error_log(print_r($log_info,true),3,APPLICATION_PATH.'/application/runtime/'.date('Y-m-d').'.log');
+        error_log(print_r($log_info,true).PHP_EOL,3,APPLICATION_PATH.'/application/runtime/'.date('Y-m-d').'.log');
 
     }
 
