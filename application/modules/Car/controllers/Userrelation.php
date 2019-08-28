@@ -68,6 +68,24 @@ class UserrelationController extends BaseController
         }
     }
 
+    //用户参与购车计算
+    public function userAddModelAction() {
+
+        $user_model = new CarUserModel();
+        $user_id = $this->_userinfo['user_id'];
+        $model_id = Common_Util::getHttpReqQuery($this, 'model_id', 'Int', 'n');//用户手机号
+        $price = Common_Util::getHttpReqQuery($this, 'price', 'Int', 'n');//用户手机号
+        $is_stage = Common_Util::getHttpReqQuery($this, 'is_stage', 'Int', 'n');//用户手机号
+        $stage_times = Common_Util::getHttpReqQuery($this, 'stage_times', 'Int', 'n');//用户手机号
+        $stage_interest = Common_Util::getHttpReqQuery($this, 'stage_interest', 'Int', 'n');//用户手机号
+
+        $ret = $user_model->userAddModel($user_id,$model_id,$price,$is_stage,$stage_times,$stage_interest);
+        if ($ret) {
+            return $this->ajaxReturn(0, 'ok');
+        } else {
+            return $this->ajaxReturn(-1, 'error please try again');
+        }
+    }
 
     //获取用户参与过那些活动的接口
     public function getUserEventsAction() {

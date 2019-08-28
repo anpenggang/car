@@ -133,5 +133,39 @@ class CarUserModel extends BaseModel
 
     }
 
+    //用户车型关联
+    public function userAddModel($user_id,$model_id,$price,$is_stage,$stage_times,$stage_interest) {
+
+        $this->_db->where('user_id',$user_id)
+            ->where('model_id',$model_id)
+            ->where('deleted',0);
+        $is_added = $this->_db->getOne('user_model');
+        if (!empty($is_added)) {
+            $this->_db->where('user_id',$user_id)
+                ->where('model_id',$model_id)
+                ->where('deleted',0);
+            $ret = $this->_db->update('user_model',[
+                'price' => $price,
+                'is_stage' => $is_stage,
+                'stage_times' => $stage_times,
+                'stage_interest' => $stage_interest,
+                'updated_at' => date('Y-m-d H:i:s'),
+            ]);
+        } else {
+            $ret = $this->_db->insert('user_model',[
+                'user_id' => $user_id,
+                'model_id' => $model_id,
+                'price' => $price,
+                'is_stage' => $is_stage,
+                'stage_times' => $stage_times,
+                'stage_interest' => $stage_interest,
+                'updated_at' => date('Y-m-d H:i:s'),
+            ]);
+        }
+
+        return $ret;
+
+    }
+
 
 }
