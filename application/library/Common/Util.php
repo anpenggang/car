@@ -321,8 +321,8 @@ class Common_Util{
             $log_info['function'] = __FUNCTION__;
             $log_info['class'] = __CLASS__;
         }
-        $log_info['type'] ='%type%';
-        $log_info['timestamp'] = '%date%';
+        $log_info['type'] =$level;
+        $log_info['timestamp'] = date('Y-m-d H:i:s');
         $log_info['data'] =$log;
 
         empty($level) && $level = 'error';
@@ -330,7 +330,7 @@ class Common_Util{
 
         $log_info = json_encode($log_info, JSON_UNESCAPED_UNICODE);
         $level = strtolower($level);
-        error_log(print_r($log_info,true),3,APPLICATION_PATH.'/application/runtime/'.date('Y-m-d').'log');
+        error_log(print_r($log_info,true),3,APPLICATION_PATH.'/application/runtime/'.date('Y-m-d').'.log');
 
     }
 
