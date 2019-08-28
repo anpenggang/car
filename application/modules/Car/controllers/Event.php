@@ -135,5 +135,4 @@ class EventController extends BaseController
         }
     }
 
-
 }//endclass

@@ -68,4 +68,16 @@ class UserrelationController extends BaseController
         }
     }
 
+
+    //获取用户参与过那些活动的接口
+    public function getUserEventsAction() {
+
+        $user_model = new CarUserModel();
+        $user_id = $this->_userinfo['user_id'];
+        $ret = $user_model->getUserEvents($user_id);
+
+        return $this->ajaxReturn(0,'ok',$ret);
+    }
+
+
 }//endclass

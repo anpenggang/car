@@ -111,5 +111,27 @@ class CarUserModel extends BaseModel
 
     }
 
+    //获取用户关联过哪些活动
+    public function getUserEvents($user_id) {
+
+        $sql = "
+             select 
+             ue.user_id
+             ,ue.event_id
+             ,ce.title
+             ,ce.cover_img
+             ,ce.start_time
+             ,ce.end_time
+             ,ce.status
+             from user_event ue
+             left join car_event ce on ce.id = ue.event_id
+             where ue.user_id = $user_id
+             and ue.deleted = 0
+             and ce.deleted = 0
+            ";
+        return $this->_db->rawQuery($sql);
+
+    }
+
 
 }
