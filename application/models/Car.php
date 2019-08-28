@@ -259,7 +259,7 @@ class CarModel extends BaseModel
     public function getModelCal($model_id) {
 
         $cal_infos_sql = "select
-                id
+                id as model_id
                 ,guiding_price
                 ,down_payment
                 ,price
@@ -272,7 +272,7 @@ class CarModel extends BaseModel
         if (!empty($cal_infos)) {
             $cal_info = $cal_infos[0];
             $stage_infos_sql = "select
-                    id
+                    id as stage_id
                     ,model_id
                     ,stages_times
                     ,stage_interest
