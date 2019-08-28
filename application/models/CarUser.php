@@ -118,6 +118,7 @@ class CarUserModel extends BaseModel
              select 
              ue.user_id
              ,ue.event_id
+             ,ue.created_at
              ,ce.title
              ,ce.cover_img
              ,ce.start_time
@@ -167,5 +168,28 @@ class CarUserModel extends BaseModel
 
     }
 
+    //获取用户参与的购车计算
+    public function getUserModel($user_id) {
+        $sql = "select
+                um.id
+                ,um.user_id
+                ,um.model_id
+                ,um.price
+                ,um.is_stage
+                ,um.stage_times
+                ,um.stage_interest
+                ,um.created_at
+                ,cm.name as model_name
+                ,features as model_features
+                from user_model um
+                left join car_model cm cm.id = um.model_id
+                where um.user_id = $user_id
+                and um.deleted = 0
+                and cm.deleted = 0
+                ";
+        $ret = $this->_db->rawQuery($sql);
+        return $ret;
+
+    }
 
 }

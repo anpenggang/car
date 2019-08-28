@@ -68,6 +68,16 @@ class UserrelationController extends BaseController
         }
     }
 
+    //获取用户参与过那些活动的接口
+    public function getUserEventsAction() {
+
+        $user_model = new CarUserModel();
+        $user_id = $this->_userinfo['user_id'];
+        $ret = $user_model->getUserEvents($user_id);
+
+        return $this->ajaxReturn(0,'ok',$ret);
+    }
+
     //用户参与购车计算
     public function userAddModelAction() {
 
@@ -87,15 +97,16 @@ class UserrelationController extends BaseController
         }
     }
 
-    //获取用户参与过那些活动的接口
-    public function getUserEventsAction() {
-
+    //获取用户参与的购车计划
+    public function getUserModelAction() {
         $user_model = new CarUserModel();
         $user_id = $this->_userinfo['user_id'];
-        $ret = $user_model->getUserEvents($user_id);
+        $ret = $user_model->getUserModel($user_id);
 
-        return $this->ajaxReturn(0,'ok',$ret);
+        return $this->ajaxReturn(0, 'ok',$ret);
+
     }
+
 
 
 }//endclass
