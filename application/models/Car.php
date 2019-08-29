@@ -297,7 +297,7 @@ class CarModel extends BaseModel
     {
         //开启事务
         $this->_db->autocommit(false);
-        if (!empty($event_img)) {//添加活动照片
+        if (!empty($img)) {//添加活动照片
             $this->_db->where('type', $type)->where('origin_id', $origin_id);
             $this->_db->delete('car_image');
             $img_arr = $this->front_json_decode($img);
