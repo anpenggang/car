@@ -273,8 +273,8 @@ class CarController extends BaseController
         $origin_id = Common_Util::getHttpReqQuery($this, 'origin_id', 'Int', 'n'); //车型id
         $type = Common_Util::getHttpReqQuery($this, 'type', 'Int', 'n'); //车型id
         $image_info = Common_Util::getHttpReqQuery($this, 'image_info', 'Str', 'n'); //外观
-
-        $ret = $car_model->processAllImage($origin_id,$type,$image_info);
+        $image_info_decode = $this->front_json_decode($image_info);
+        $ret = $car_model->processAllImage($origin_id,$type,$image_info_decode);
         if ($ret) {
             return $this->ajaxReturn(0,'ok',[]);
         } else {

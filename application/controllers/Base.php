@@ -197,4 +197,18 @@ class BaseController extends Yaf_Controller_Abstract {
 
     }
 
+    /**
+     * 解析前台传过来的串
+     *
+     * @param $str
+     * @return mixed|string
+     */
+    public function front_json_decode($str) {
+
+        $data = stripslashes(html_entity_decode($str)); //$str
+        $data = json_decode($data,TRUE);
+        return $data;
+
+    }
+
 }

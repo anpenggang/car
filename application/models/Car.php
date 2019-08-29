@@ -187,7 +187,7 @@ class CarModel extends BaseModel
         if (!empty($event_img)) {//添加活动照片
             $connection->where('type', $type)->where('origin_id', $origin_id);
             $connection->delete('car_image');
-            $event_img = json_decode($event_img, true);
+            $event_img = $this->front_json_decode($event_img);
             //print_r($event_img);
             if (is_array($event_img)) {
                 foreach ($event_img as $key => $value) {
@@ -230,7 +230,7 @@ class CarModel extends BaseModel
             }
             //外观
             if (!empty($stage_info)) {
-                $stage_info_arr = json_decode($stage_info,true);
+                $stage_info_arr = $this->front_json_decode($stage_info);
                 $this->_db->where('model_id',$model_id);
                 $this->_db->delete('car_model_stage');
                 if (is_array($stage_info_arr)) {
@@ -293,17 +293,16 @@ class CarModel extends BaseModel
     }
 
     //处理各种不同类型的图片
-    public function processAllImage($origin_id, $type, $event_img)
+    public function processAllImage($origin_id, $type, $img)
     {
         //开启事务
         $this->_db->autocommit(false);
         if (!empty($event_img)) {//添加活动照片
             $this->_db->where('type', $type)->where('origin_id', $origin_id);
             $this->_db->delete('car_image');
-            $event_img = json_decode($event_img, true);
-            //print_r($event_img);
-            if (is_array($event_img)) {
-                foreach ($event_img as $key => $value) {
+            $img_arr = $this->front_json_decode($img);
+            if (is_array($img_arr)) {
+                foreach ($img_arr as $key => $value) {
                     $insert_data = [
                         'origin_id' => $origin_id,
                         'type' => $type,
