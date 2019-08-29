@@ -69,7 +69,7 @@ class EventController extends BaseController
         $data['end_time'] = Common_Util::getHttpReqQuery($this, 'end_time', 'Str', 'n');//结束时间
 
         $event_img = Common_Util::getHttpReqQuery($this, 'event_img', 'Str', 'n');//活动内容照片
-        $data['content'] = Common_Util::getHttpReqQuery($this, 'content', 'Str', 'n');//活动内容
+        $data['content'] = addslashes(Common_Util::getHttpReqQuery($this, 'content', 'Str', 'n'));//活动内容
         $ret = $this->_model->add($data, $event_img);
 
         if ($ret) {
@@ -124,7 +124,7 @@ class EventController extends BaseController
         $data['end_time'] = Common_Util::getHttpReqQuery($this, 'end_time', 'Str', 'n');//结束时间
 
         $event_img = Common_Util::getHttpReqQuery($this, 'event_img', 'Str', 'n');//活动内容照片
-        $data['content'] = Common_Util::getHttpReqQuery($this, 'content', 'Str', 'n');//活动内容
+        $data['content'] = addslashes(Common_Util::getHttpReqQuery($this, 'content', 'Str', 'n'));//活动内容
         $data['updated_at'] = date('Y-m-d H:i:s');
         $ret = $this->_model->edit($event_id, $data, $event_img);
 
