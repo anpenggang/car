@@ -141,12 +141,12 @@ class CarController extends BaseController
         $data['brand_id'] = 1; //品牌ID
         $data['updated_at'] = date('Y-m-d H:i:s');
 
-        $data_t['appear'] = Common_Util::getHttpReqQuery($this, 'appear', 'Str', 'n', ''); //外观
-        $data_t['interior'] = Common_Util::getHttpReqQuery($this, 'interior', 'Str', 'n', ''); //内饰
-        $data_t['tech'] = Common_Util::getHttpReqQuery($this, 'tech', 'Str', 'n', ''); //内饰
-        $data_t['space'] = Common_Util::getHttpReqQuery($this, 'space', 'Str', 'n', ''); //空间
+        #$data_t['appear'] = Common_Util::getHttpReqQuery($this, 'appear', 'Str', 'n', ''); //外观
+        #$data_t['interior'] = Common_Util::getHttpReqQuery($this, 'interior', 'Str', 'n', ''); //内饰
+        #$data_t['tech'] = Common_Util::getHttpReqQuery($this, 'tech', 'Str', 'n', ''); //内饰
+        #$data_t['space'] = Common_Util::getHttpReqQuery($this, 'space', 'Str', 'n', ''); //空间
 
-        $ret = $this->_model->editLineDetail($line_id,$data,$data_t);
+        $ret = $this->_model->editLineDetail($line_id,$data/*$data_t*/);
         if ($ret) {
             return $this->ajaxReturn(0,'ok',[]);
         } else {

@@ -143,34 +143,34 @@ class CarModel extends BaseModel
                 $this->_db->rollback();
                 return false;
             }
-            //外观
-            $image_appear_ret = $this->processImage($this->_db, 4, $line_id, $data_t['appear']);
-            if (!$image_appear_ret) {
-                //回滚
-                $this->_db->rollback();
-                return false;
-            }
-            //内饰
-            $image_interior_ret = $this->processImage($this->_db, 5, $line_id, $data_t['interior']);
-            if (!$image_interior_ret) {
-                //回滚
-                $this->_db->rollback();
-                return false;
-            }
-            //科技
-            $image_tech_ret = $this->processImage($this->_db, 6, $line_id, $data_t['tech']);
-            if (!$image_tech_ret) {
-                //回滚
-                $this->_db->rollback();
-                return false;
-            }
-            //空间
-            $image_space_ret = $this->processImage($this->_db, 7, $line_id, $data_t['space']);
-            if (!$image_space_ret) {
-                //回滚
-                $this->_db->rollback();
-                return false;
-            }
+//            //外观
+//            $image_appear_ret = $this->processImage($this->_db, 4, $line_id, $data_t['appear']);
+//            if (!$image_appear_ret) {
+//                //回滚
+//                $this->_db->rollback();
+//                return false;
+//            }
+//            //内饰
+//            $image_interior_ret = $this->processImage($this->_db, 5, $line_id, $data_t['interior']);
+//            if (!$image_interior_ret) {
+//                //回滚
+//                $this->_db->rollback();
+//                return false;
+//            }
+//            //科技
+//            $image_tech_ret = $this->processImage($this->_db, 6, $line_id, $data_t['tech']);
+//            if (!$image_tech_ret) {
+//                //回滚
+//                $this->_db->rollback();
+//                return false;
+//            }
+//            //空间
+//            $image_space_ret = $this->processImage($this->_db, 7, $line_id, $data_t['space']);
+//            if (!$image_space_ret) {
+//                //回滚
+//                $this->_db->rollback();
+//                return false;
+//            }
             $this->_db->commit();
             return $line_id;
 
