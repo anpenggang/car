@@ -266,5 +266,22 @@ class CarController extends BaseController
         return $this->ajaxReturn(0,'ok',$ret);
     }
 
+    //单独传递图片的接口
+    public function addImageAction() {
+
+        $car_model = new CarModel();
+        $origin_id = Common_Util::getHttpReqQuery($this, 'origin_id', 'Int', 'n'); //车型id
+        $type = Common_Util::getHttpReqQuery($this, 'type', 'Int', 'n'); //车型id
+        $image_info = Common_Util::getHttpReqQuery($this, 'image_info', 'Str', 'n'); //外观
+
+        $ret = $car_model->processAllImage($origin_id,$type,$image_info);
+        if ($ret) {
+            return $this->ajaxReturn(0,'ok',[]);
+        } else {
+            return $this->ajaxReturn(-1,'error please try again',[]);
+        }
+
+    }
+
 
 }//endclass

@@ -188,23 +188,25 @@ class CarModel extends BaseModel
             $connection->where('type', $type)->where('origin_id', $origin_id);
             $connection->delete('car_image');
             $event_img = json_decode($event_img, true);
-            print_r($event_img);
-            foreach ($event_img as $key => $value) {
-                $insert_data = [
-                    'origin_id' => $origin_id,
-                    'type' => $type,
-                    'img_src' => $value['img_src'],
-                    'remark' => $value['remark'],
-                    'width' => $value['width'],
-                    'height' => $value['height'],
-                ];
-                $insert_ret = $connection->insert('car_image', $insert_data);
-                #var_dump($insert_ret);
-                #$insert_ret = $this->_db->insert('car_image', $insert_data);
-                if (!$insert_ret) {
-                    //回滚
-                    $connection->rollback();
-                    return false;
+            //print_r($event_img);
+            if (is_array($event_img)) {
+                foreach ($event_img as $key => $value) {
+                    $insert_data = [
+                        'origin_id' => $origin_id,
+                        'type' => $type,
+                        'img_src' => $value['img_src'],
+                        'remark' => $value['remark'],
+                        'width' => $value['width'],
+                        'height' => $value['height'],
+                    ];
+                    $insert_ret = $connection->insert('car_image', $insert_data);
+                    #var_dump($insert_ret);
+                    #$insert_ret = $this->_db->insert('car_image', $insert_data);
+                    if (!$insert_ret) {
+                        //回滚
+                        $connection->rollback();
+                        return false;
+                    }
                 }
             }
         }
@@ -231,18 +233,20 @@ class CarModel extends BaseModel
                 $stage_info_arr = json_decode($stage_info,true);
                 $this->_db->where('model_id',$model_id);
                 $this->_db->delete('car_model_stage');
-                foreach ($stage_info_arr as $key => $value) {
-                    $insert_data = [
-                        'stages_times' => $value['stages_times'],
-                        'stage_interest' => $value['stage_interest'],
-                        'model_id' => $model_id,
-                        'updated_at' => date('Y-m-d H:i:s'),
-                    ];
-                    $insert_ret = $this->_db->insert('car_model_stage', $insert_data);
-                    if (!$insert_ret) {
-                        //回滚
-                        $this->_db->rollback();
-                        return false;
+                if (is_array($stage_info_arr)) {
+                    foreach ($stage_info_arr as $key => $value) {
+                        $insert_data = [
+                            'stages_times' => $value['stages_times'],
+                            'stage_interest' => $value['stage_interest'],
+                            'model_id' => $model_id,
+                            'updated_at' => date('Y-m-d H:i:s'),
+                        ];
+                        $insert_ret = $this->_db->insert('car_model_stage', $insert_data);
+                        if (!$insert_ret) {
+                            //回滚
+                            $this->_db->rollback();
+                            return false;
+                        }
                     }
                 }
             }
@@ -285,6 +289,42 @@ class CarModel extends BaseModel
         } else {
             return [];
         }
+
+    }
+
+    //处理各种不同类型的图片
+    public function processAllImage($origin_id, $type, $event_img)
+    {
+        //开启事务
+        $this->_db->autocommit(false);
+        if (!empty($event_img)) {//添加活动照片
+            $this->_db->where('type', $type)->where('origin_id', $origin_id);
+            $this->_db->delete('car_image');
+            $event_img = json_decode($event_img, true);
+            //print_r($event_img);
+            if (is_array($event_img)) {
+                foreach ($event_img as $key => $value) {
+                    $insert_data = [
+                        'origin_id' => $origin_id,
+                        'type' => $type,
+                        'img_src' => $value['img_src'],
+                        'remark' => $value['remark'],
+                        'width' => $value['width'],
+                        'height' => $value['height'],
+                    ];
+                    $insert_ret = $this->_db->insert('car_image', $insert_data);
+                    #var_dump($insert_ret);
+                    #$insert_ret = $this->_db->insert('car_image', $insert_data);
+                    if (!$insert_ret) {
+                        //回滚
+                        $this->_db->rollback();
+                        return false;
+                    }
+                }
+            }
+        }
+        $this->_db->commit();
+        return true;
 
     }
 

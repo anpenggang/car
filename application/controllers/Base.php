@@ -35,10 +35,10 @@ class BaseController extends Yaf_Controller_Abstract {
         //$redis->auth('jiangfengloveheibaixiaoyuan');
         $this->_redis = $redis;
 
-// 指定允许其他域名访问  
-  header('Access-Control-Allow-Origin:*');
-  header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization,X-FIN-SESSION-ID,X-FIN-SESSION-LAST-AT"); 
-  header('Access-Control-Allow-Methods: GET, POST, PUT,DELETE,OPTIONS,PATCH');
+        // 指定允许其他域名访问
+        header('Access-Control-Allow-Origin:*');
+        header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization,X-FIN-SESSION-ID,X-FIN-SESSION-LAST-AT");
+        header('Access-Control-Allow-Methods: GET, POST, PUT,DELETE,OPTIONS,PATCH');
 
 	}
 
