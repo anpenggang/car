@@ -103,7 +103,7 @@ class CarController extends BaseController
     //feature拆分方法
     public function explodeFeature($content) {
 
-        return explode("\n", $content);
+        return $this->front_json_decode($content);
 
     }
 

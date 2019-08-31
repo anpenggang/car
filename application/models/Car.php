@@ -130,7 +130,7 @@ class CarModel extends BaseModel
     }
 
     //编辑车系详情
-    public function editLineDetail($line_id, $data, $data_t)
+    public function editLineDetail($line_id, $data, $data_t = '')
     {
 
         try {
