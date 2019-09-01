@@ -149,6 +149,13 @@ class UserController extends BaseController
         $errCode = $pc->decryptData($encryptedData, $iv, $data);
 
         if ($errCode == 0) {
+            $_data = json_decode($data,true);
+            $ret = $this->_model->updateUserPhone($wxret['openid'],$_data['phoneNumber']);
+            if ($ret) {
+                return $this->ajaxReturn(0,'ok',['phone' => $_data['phoneNumber']]);
+            } else {
+                return $this->ajaxReturn(-1,'error please try again');
+            }
             return $this->ajaxReturn(0,'ok',$data);
         } else {
             return $this->ajaxReturn(-1,'error please try again');

@@ -210,4 +210,16 @@ class CarUserModel extends BaseModel
 
     }
 
+    //更新用户手机号
+    public function updateUserPhone($openid,$phoneNumber){
+
+        $this->_db->where('openid',$openid);
+        $ret = $this->_db->update($this->_table,[
+            'phone' => $phoneNumber,
+        ]);
+
+        return $ret;
+
+    }
+
 }
