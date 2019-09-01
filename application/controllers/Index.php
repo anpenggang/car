@@ -13,6 +13,7 @@ class IndexController extends BaseController
 {
 
     protected $_redis = null;
+    protected $admin_user_info = null;
 
     /**
      * 初始化方法 基类控制器被调用的时候先执行初始化方法，可作用于全局
@@ -20,7 +21,8 @@ class IndexController extends BaseController
     public function init()
     {
         parent::init();
-        Yaf_Dispatcher::getInstance()->enableView();
+        //Yaf_Dispatcher::getInstance()->enableView();
+        $this->admin_user_info = Common_Const::$adminUserList;
     }
 
     public function indexAction()
@@ -51,15 +53,15 @@ class IndexController extends BaseController
     {
 
         header('content-type:text/html;charset=utf-8');
-        if ($this->getRequest()->getMethod() == 'POST') {
+//        if ($this->getRequest()->getMethod() == 'POST') {
+        if (true) {
+
             $username = Common_Util::getHttpReqQuery($this, 'username', 'Str', 'n');
             $password = Common_Util::getHttpReqQuery($this, 'password', 'Str', 'n');
-            if ($username == 'apgapg' && 'apgapg' == $password) {
-                Yaf_Session::getInstance()->set("username", $username);
-                Yaf_Session::getInstance()->set('password', $password);
-                $this->redirect("/");
+            if(!empty($this->admin_user_info[$username]) && $this->admin_user_info[$username] == $password) {
+                return $this->ajaxReturn(0,'ok');
             } else {
-                $this->getView()->assign("errmsg", "用户名或者密码错误");
+                return $this->ajaxReturn(-1,'用户名或者密码错误');
             }
         }
 

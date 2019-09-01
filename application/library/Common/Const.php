@@ -36,6 +36,13 @@ class Common_Const {
         2 => '进口'
     ];
 
+    public static $adminUserList = [
+
+        'admin' => 'admin.0901',
+
+
+    ];
+
 
 
 }

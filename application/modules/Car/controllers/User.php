@@ -226,4 +226,14 @@ class UserController extends BaseController
 
     }
 
+    /**
+     * 获取登录用户列表
+     */
+    public function getUserListAction() {
+
+        $ret = $this->_model->getUserList();
+        return $this->ajaxReturn(0,'ok',$ret);
+
+    }
+
 }//endclass

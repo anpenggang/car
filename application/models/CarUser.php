@@ -192,4 +192,22 @@ class CarUserModel extends BaseModel
 
     }
 
+    //获得登录用户列表
+    public function getUserList() {
+
+        $sql = "select
+                    id
+                    ,nickname
+                    ,gender
+                    ,city
+                    ,phone
+                    ,avatar_url
+                    ,created_at
+                    ,updated_at
+                    from user_info";
+        $ret = $this->_db->rawQuery($sql);
+        return $ret;
+
+    }
+
 }
