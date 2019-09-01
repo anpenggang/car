@@ -226,7 +226,7 @@ class CarUserModel extends BaseModel
     //用户参与互动接口
     public function addUserInteract($user_id,$interact_id) {
 
-        $is_added = getUserInteract($user_id,$interact_id);
+        $is_added = $this->getUserInteract($user_id,$interact_id);
         if (!empty($is_added)) {
             return -2;
         } else {
