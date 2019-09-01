@@ -172,7 +172,7 @@ class UserrelationController extends BaseController
         $ret = $user_model-> getLuckedUser($user_id,$interact_id);
 
         if (!empty($ret)) {
-            return $this->ajaxReturn(0, 'ok',$ret);
+            return $this->ajaxReturn(0, 'ok','中奖');
         } else {
             return $this->ajaxReturn(-1, '本次活动未中奖');
         }
