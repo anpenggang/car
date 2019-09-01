@@ -107,6 +107,77 @@ class UserrelationController extends BaseController
 
     }
 
+    //用户参与互动
+    public function addUserInteractAction() {
+
+        $user_model = new CarUserModel();
+        $user_id = $this->_userinfo['user_id'];
+        $interact_id = Common_Util::getHttpReqQuery($this, 'interact_id', 'Int', 'n');//用户手机号
+
+        $ret = $user_model->addUserInteract($user_id,$interact_id);
+        if ($ret === -2) {
+            return $this->ajaxReturn(-2, '已参加过互动，无须参与');
+        }
+        if ($ret) {
+            return $this->ajaxReturn(0, 'ok');
+        } else {
+            return $this->ajaxReturn(-1, 'error please try again');
+        }
+
+    }
+
+    //获取用户是否参与过互动
+    public function getUserInteractedAction() {
+        $user_model = new CarUserModel();
+        $user_id = $this->_userinfo['user_id'];
+        $interact_id = Common_Util::getHttpReqQuery($this, 'interact_id', 'Int', 'n');//用户手机号
+
+        $ret = $user_model->getUserInteract($user_id,$interact_id);
+
+        if (empty($ret)) {
+            return $this->ajaxReturn(0, '未参与互动');
+        } else {
+            return $this->ajaxReturn(-1, '已经参与过互动');
+        }
+    }
+
+    //用户中奖页面接口
+    public function addIsLuckedUserAction() {
+        $user_model = new CarUserModel();
+        $user_id = $this->_userinfo['user_id'];
+        $interact_id = Common_Util::getHttpReqQuery($this, 'interact_id', 'Int', 'n');//用户手机号
+        $is_luck = Common_Util::getHttpReqQuery($this, 'is_luck', 'Int', 'n');//用户手机号
+
+        $ret = $user_model->addLuckedUser($user_id,$interact_id,$is_luck);
+
+        if ($ret === -2) {
+            return $this->ajaxReturn(-2, '已参与抽奖不可重复参与');
+        }
+        if ($ret === -3) {
+            return $this->ajaxReturn(-2, '未参与互动不能参与抽奖');
+        }
+        if ($ret) {
+            return $this->ajaxReturn(0, 'ok');
+        } else {
+            return $this->ajaxReturn(-1, 'error please try again');
+        }
+    }
+
+    //获取用户是否中奖
+    public function getIsLuckedUserAction() {
+        $user_model = new CarUserModel();
+        $user_id = $this->_userinfo['user_id'];
+        $interact_id = Common_Util::getHttpReqQuery($this, 'interact_id', 'Int', 'n');//用户手机号
+
+        $ret = $user_model-> getLuckedUser($user_id,$interact_id);
+
+        if (!empty($ret)) {
+            return $this->ajaxReturn(0, 'ok',$ret);
+        } else {
+            return $this->ajaxReturn(-1, '本次活动未中奖');
+        }
+    }
+
 
 
 }//endclass

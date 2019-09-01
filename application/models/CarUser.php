@@ -216,9 +216,66 @@ class CarUserModel extends BaseModel
         $this->_db->where('openid',$openid);
         $ret = $this->_db->update($this->_table,[
             'phone' => $phoneNumber,
+            'updated_at' => date('Y-m-d H:i:s'),
         ]);
 
         return $ret;
+
+    }
+
+    //用户参与互动接口
+    public function addUserInteract($user_id,$interact_id) {
+
+        $is_added = getUserInteract($user_id,$interact_id);
+        if (!empty($is_added)) {
+            return -2;
+        } else {
+            $ret = $this->_db->insert('user_interact',[
+                'user_id' => $user_id,
+            ]);
+            return $ret;
+        }
+    }
+
+    //获取用户是否参与过某次互动
+    public function getUserInteract($user_id,$interact_id) {
+        $this->_db->where('user_id',$user_id)->where('interact_id',$interact_id);
+        $is_added = $this->_db->getOne('user_interact');
+        return $is_added;
+    }
+
+    //添加中奖用户接口
+    public function addLuckedUser($user_id,$interact_id,$is_luck) {
+
+        if(empty($this->getUserInteract($user_id,$interact_id))) {
+            return -3;//未参与互动不能参与抽奖
+        }
+
+        if (!empty($this->getLuckedUser($user_id,$interact_id))) {
+            return -2; //已参与抽奖不可重复参与
+        }
+
+        $this->_db->where('user_id',$user_id)->where('interact_id',$interact_id);
+        $ret = $this->_db->update('user_interact',[
+            'islucked' => $is_luck,
+            'updated_at' => date('Y-m-d H:i:s')]);
+        return $ret;
+
+
+    }
+
+    public function getLuckedUser($user_id,$interact_id) {
+
+        $sql = "select 
+              user_id
+              ,interact_id
+              ,islucked 
+              from user_interact 
+              where user_id= $user_id 
+                and interact_id=$interact_id 
+                and islucked !=0";
+        $this->_db->rawQuery($sql);
+
 
     }
 
