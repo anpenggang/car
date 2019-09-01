@@ -125,7 +125,7 @@ class UserController extends BaseController
 
     }
 
-    private function getUserPhoneAction()
+    public function getUserPhoneAction()
     {
         require APPLICATION_PATH . "/application/library/WXBizDataCrypt.php";
         //$e = Common_Util::getHttpReqQuery($this,'encryptedData','Str','n','');//encrytedData
