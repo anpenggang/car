@@ -259,6 +259,15 @@ class CarModel extends BaseModel
         }
     }
 
+    //删除车型
+    public function carModelDelete($model_id) {
+
+        $this->_db->where('id',$model_id);
+        $ret = $this->_db->update($this->car_model_table,['deleted' => 1]);
+        return $ret;
+
+    }
+
     //获取车型计算器信息
     public function getModelCal($model_id) {
 

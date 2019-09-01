@@ -85,6 +85,19 @@ class CarController extends BaseController
 
     }
 
+    public function carModelDeleteAction() {
+
+        $model_id = Common_Util::getHttpReqQuery($this, 'model_id', 'Int', 'n', ''); //车系id
+        $ret = $this->_model->carModelDelete($model_id);
+        if ($ret) {
+            return $this->ajaxReturn(0,'ok',[]);
+        } else {
+            return $this->ajaxReturn(-1,'error please try again',[]);
+        }
+
+    }
+
+
     //品牌列表
     public function carBrandListAction()
     {
