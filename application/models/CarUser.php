@@ -275,7 +275,7 @@ class CarUserModel extends BaseModel
               where user_id= $user_id 
                 and interact_id=$interact_id 
                 and islucked !=0";
-        $this->_db->rawQuery($sql);
+        return $this->_db->rawQuery($sql);
 
 
     }
