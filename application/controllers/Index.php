@@ -46,6 +46,7 @@ class IndexController extends BaseController
 
     public function testAction()
     {
+        Yaf_Dispatcher::getInstance()->enableView();
 
     }
 
