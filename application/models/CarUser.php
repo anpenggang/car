@@ -232,6 +232,7 @@ class CarUserModel extends BaseModel
         } else {
             $ret = $this->_db->insert('user_interact',[
                 'user_id' => $user_id,
+                'interact_id' => $interact_id,
             ]);
             return $ret;
         }
