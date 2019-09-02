@@ -49,6 +49,7 @@ class CarModel extends BaseModel
                    from car_model cm
                    where cm.deleted = 0
                    and cm.line_id = {$line_id}
+                   order by floor_price asc 
                   ";
         return $this->_db->rawQuery($sql);
     }
