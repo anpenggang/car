@@ -290,7 +290,7 @@ class CarUserModel extends BaseModel
                 ui.phone,
                 ui_t.created_at
                 from user_interact ui_t
-                left join user_info ui on ui.id = ui_t.id
+                left join user_info ui on ui.id = ui_t.user_id
                 where islucked = 1     
         ";
         return $this->_db->rawQuery($sql);
