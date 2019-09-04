@@ -288,7 +288,7 @@ class CarUserModel extends BaseModel
                 ui.city,
                 ui.avatar_url,
                 ui.phone,
-                uit_t.created_at
+                ui_t.created_at
                 from user_interact ui_t
                 left join user_info ui on ui.id = ui_t.id
                 where islucked = 1     
