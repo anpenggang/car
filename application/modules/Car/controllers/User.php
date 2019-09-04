@@ -240,4 +240,14 @@ class UserController extends BaseController
 
     }
 
+    public function getLuckedUserAction() {
+
+        $car_user_model = new CarUserModel();
+
+        $ret = $car_user_model->getLuckedUserList();
+
+        return $this->ajaxReturn(0,'ok',$ret);
+
+    }
+
 }//endclass

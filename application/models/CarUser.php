@@ -280,4 +280,21 @@ class CarUserModel extends BaseModel
 
     }
 
+    public function getLuckedUserList() {
+
+        $sql = "select
+                ui_t.user_id,
+                ui.nickname,
+                ui.city,
+                ui.avatar_url,
+                ui.phone,
+                uit_t.created_at
+                from user_interact ui_t
+                left join user_info ui on ui.id = ui_t.id
+                where islucked = 1     
+        ";
+        return $this->_db->rawQuery($sql);
+
+    }
+
 }
